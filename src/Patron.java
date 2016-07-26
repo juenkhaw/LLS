@@ -1,6 +1,5 @@
 
 public class Patron {
-	//test
 	private static int userCount = 0;
 	private String userCode;
 	private String userName;
