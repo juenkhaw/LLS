@@ -8,7 +8,7 @@ public class Patron {
 	private String hpNo;
 	private double fine;
 	
-	private Patron() {		
+	public Patron() {		
 	}
 	
 	public Patron(String userName, String address, String postCode, String hpNo, double fine) {
