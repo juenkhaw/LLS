@@ -7,7 +7,11 @@ public class Loan {
 	private Date dateBorrowed;
 	private Date dueDate;
 	private Date dateReturned;
-	
+
 	public Loan() {}
 	//public Loan(Patron patr)
+
+	public Date getDateBorrowed(){return dateBorrowed;}
+	public Date getDueDate(){return dueDate;}
+	public Date getDateReturned(){return dateReturned;}
 }
