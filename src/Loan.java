@@ -9,7 +9,10 @@ public class Loan {
 	private Date dateReturned;
 
 	public Loan() {}
-	//public Loan(Patron patr)
+	public Loan(Patron patr, Resource resc) {
+		this.patr = patr;
+		this.resc = resc;
+	}
 
 	public Date getDateBorrowed(){return dateBorrowed;}
 	public Date getDueDate(){return dueDate;}
