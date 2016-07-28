@@ -8,7 +8,7 @@ public class Patron {
 	private String hpNo;
 	private double fine;
 	
-	public Patron() {		
+	public Patron() {
 	}
 	
 	public Patron(String userName, String address, String postCode, String hpNo, double fine) {
@@ -35,7 +35,7 @@ public class Patron {
 	public void setHpNo(String hpNo) {this.hpNo = hpNo;}
 	
 	public String toString() {
-		return String.format("\nUser Code\t: %s\nUser Name\t: %s\nAddress\t\t: %s\nPost Code\t: %s\nHp. No.\t\t: %s\nTotal Fine\t: MYR%8.2f",
+		return String.format("\nUser Code\t: %s\nUser Name\t: %s\nAddress\t\t: %s\nPost Code\t: %s\nHp. No.\t\t: %s\nTotal Fine\t: MYR%8.2f\n",
 				userCode, userName, address, postCode, hpNo, fine);
 	}
 }

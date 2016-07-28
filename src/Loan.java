@@ -17,4 +17,8 @@ public class Loan {
 	public Date getDateBorrowed(){return dateBorrowed;}
 	public Date getDueDate(){return dueDate;}
 	public Date getDateReturned(){return dateReturned;}
+	
+	public String toString() {
+		return String.format("%s\n%s\n%s\n%s\n%s\n", patr.toString(), resc.toString(), dateBorrowed, dueDate, dateReturned);
+	}
 }

@@ -26,4 +26,8 @@ public class Resource {
 	public Date getpublicationDate(){return publicationDate;}
 	public String getCallNo(){return callNo;}
 	public String getAccessionNo(){	return accessionNo;}
+	
+	public String toString() {
+		return String.format("%s\n%s\n%s\n%s\n%s\n", title, publisher, new Date().toString(), callNo, accessionNo);
+	}
 }

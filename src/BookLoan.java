@@ -17,4 +17,8 @@ public class BookLoan extends Loan {
 	public static void setFineRate(double newFineRate) {
 		fineRate = newFineRate;
 	}
+	
+	public String toString() {
+		return String.format("%s\n%s", super.toString(), fineRate);
+	}
 }
