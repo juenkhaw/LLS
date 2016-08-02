@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Resource {
@@ -11,10 +12,13 @@ public class Resource {
 	public Resource() {
 	}
 
-	public Resource(String title, String publisher, Date publicationDate) {
+	public Resource(String title, String publisher, String publicationDate) {
 		this.title = title;
 		this.publisher = publisher;
-		this.publicationDate = publicationDate;
+		try {
+			this.publicationDate = new SimpleDateFormat("yyyy-MM-dd").parse(publicationDate);
+		} catch (ParseException e) {
+		}
 	}
 
 	public void setTitle(String title){

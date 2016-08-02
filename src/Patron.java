@@ -13,7 +13,7 @@ public class Patron {
 	
 	public Patron(String userName, String address, String postCode, String hpNo, double fine) {
 		userCount+=1;
-		userCode = "U" + String.valueOf(userCount);
+		userCode = "P" + String.valueOf(userCount);
 		this.userName = userName;
 		this.address = address;
 		this.postCode = postCode;

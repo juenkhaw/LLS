@@ -7,11 +7,12 @@ public class Main {
 		System.out.println("Hello World!");
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 		System.out.println("Hello World!");
-		Patron patr = new Patron("TEST", "TEST", "TEST", "TEST", 99.99);
-		Resource resc = new Resource("TEST", "TEST", new Date());
-		//System.out.println(patr.toString());
-		//System.out.println(resc.toString());
-		//System.out.println(new Loan(patr, resc).toString());
-		System.out.println(new BookLoan(patr, resc).toString());
+		
+		//Testing Objects
+		Patron patr = new Patron("Stella", "Jln ABC", "11700", "012-3456789", 0);
+		Resource resc = new Resource("Finding Dory", "Disney", "2016-6-10");
+		
+		//Testing Outputs
+		System.out.println(patr.toString()+"\n"+resc.toString());
 	}
 }
