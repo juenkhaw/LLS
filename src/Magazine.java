@@ -15,7 +15,7 @@ public class Magazine extends Resource {
     public Magazine() {
     }
 
-    public Magazine(String title, String publisher, String publicationDate, String callNo, String ISSN, String volNo)
+    public Magazine(String title, String publisher, String publicationDate, String ISSN, String volNo)
     {
 		super(title, publisher, publicationDate);
 		this.ISSN = ISSN;
@@ -27,6 +27,6 @@ public class Magazine extends Resource {
 
     public String toString()
     {
-    	return String.format("ISSN: %s\nVolume No:%s\n", ISSN, volNo);
+    	return String.format(super.toString() + "ISSN: %s\nVolume No:%s\n", ISSN, volNo);
     }
 }

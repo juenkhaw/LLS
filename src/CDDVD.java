@@ -9,6 +9,8 @@ public class CDDVD extends Resource{
     {
     	super(title, publisher, publicationDate);
     }
-
-
+    
+    public String toString() {
+    	return super.toString();
+    }
 }

@@ -58,6 +58,6 @@ public class Resource {
 	}
 	
 	public String toString() {
-		return String.format("%s\n%s\n%s\n%s\n%s\n", title, publisher, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), callNo, accessionNo);
+		return String.format("\n%s\n%s\n%s\n%s\n%s\n", title, publisher, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), callNo, accessionNo);
 	}
 }

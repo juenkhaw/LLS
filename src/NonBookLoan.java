@@ -19,6 +19,6 @@ public class NonBookLoan extends Loan {
 	}
 	
 	public String toString() {
-		return String.format("%s\n%s", super.toString(), fineRate);
+		return String.format("%s\n%s\n", super.toString(), fineRate);
 	}
 }

@@ -14,6 +14,7 @@ public class Loan {
 	public Loan(Patron patr, Resource resc) {
 		this.patr = patr;
 		this.resc = resc;
+		dateBorrowed = new Date();
 	}
 
 	public Date getDateBorrowed(){
@@ -29,6 +30,6 @@ public class Loan {
 	}
 	
 	public String toString() {
-		return String.format("%s\n%s\n%s\n%s\n%s\n", patr.toString(), resc.toString(), dateBorrowed, dueDate, dateReturned);
+		return String.format("\n%s%s%s\n%s\n%s\n", patr.toString(), resc.toString(), dateBorrowed, dueDate, dateReturned);
 	}
 }
