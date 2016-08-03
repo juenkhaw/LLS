@@ -1,8 +1,11 @@
 import java.util.Scanner;
 import java.io.IOException;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Main {
+	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
 	public static void main(String[] args) throws IOException, InterruptedException {
 		System.out.println("Hello World!");
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -17,6 +20,11 @@ public class Main {
 		Loan ln2 = new NonBookLoan(patr, resc2);
 		
 		//Testing Outputs
-		System.out.println(patr.toString()+resc1.toString()+resc2.toString()+resc3.toString()+ln1.toString()+ln2.toString());
+		//System.out.println(patr);
+		//System.out.println(resc1);
+		//System.out.println(resc2);
+		//System.out.println(resc3);
+		System.out.println(ln1);
+		//System.out.println(ln2);
 	}
 }

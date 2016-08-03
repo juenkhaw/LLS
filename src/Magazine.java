@@ -1,10 +1,3 @@
-/**
- * @(#)Magazine.java
- *
- *
- * @author
- * @version 1.00 2016/7/28
- */
 import java.util.Date;
 
 public class Magazine extends Resource {

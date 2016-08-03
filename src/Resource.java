@@ -8,6 +8,7 @@ public class Resource {
 	private Date publicationDate;
 	private String callNo;
 	private String accessionNo;
+	private boolean isBorrowed;
 
 	public Resource() {
 	}
@@ -16,7 +17,7 @@ public class Resource {
 		this.title = title;
 		this.publisher = publisher;
 		try {
-			this.publicationDate = new SimpleDateFormat("yyyy-MM-dd").parse(publicationDate);
+			this.publicationDate = Main.sdf.parse(publicationDate);
 		} catch (ParseException e) {
 		}
 	}
@@ -35,6 +36,10 @@ public class Resource {
 	
 	public void setAccessionNo(String accessionNo){
 		this.accessionNo = accessionNo;
+	}
+	
+	public void setIsBorrowed () {
+		isBorrowed = !isBorrowed;
 	}
 
 	public String getTitle(){
@@ -55,6 +60,10 @@ public class Resource {
 	
 	public String getAccessionNo(){
 		return accessionNo;
+	}
+	
+	public boolean getIsBorrowed() {
+		return isBorrowed;
 	}
 	
 	public String toString() {
