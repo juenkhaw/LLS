@@ -17,9 +17,13 @@ public class Resource {
 		this.title = title;
 		this.publisher = publisher;
 		try {
+			this.publicationDate = new Date();
 			this.publicationDate = Main.sdf.parse(publicationDate);
 		} catch (ParseException e) {
 		}
+		accessionNo = String.format("%d:%03d",this.publicationDate.getYear()%100, Main.getRandomNum(1000));
+		callNo = String.format("%c%c-%03d-%c%02d-%04d", Main.getRandomChar('Z'), Main.getRandomChar('Z'), Main.getRandomNum(1000), title.charAt(0), Main.getRandomNum(100), this.publicationDate.getYear()+1900);
+		isBorrowed = false;
 	}
 
 	public void setTitle(String title){
@@ -67,6 +71,6 @@ public class Resource {
 	}
 	
 	public String toString() {
-		return String.format("\n%s\n%s\n%s\n%s\n%s\n", title, publisher, new SimpleDateFormat("yyyy-MM-dd").format(new Date()), callNo, accessionNo);
+		return String.format("\nTitle : %s\nPublisher : %s\nPublication Date : %s\nCall No : %s\nAccession No : %s\nIs Borrowed? : %s\n", title, publisher, Main.sdf.format(new Date()), callNo, accessionNo, isBorrowed);
 	}
 }

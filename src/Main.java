@@ -6,6 +6,14 @@ import java.text.SimpleDateFormat;
 public class Main {
 	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
+	public static int getRandomNum(int limit) {
+		return (int)(Math.random()*limit);
+	}
+	
+	public static char getRandomChar(char limit) {
+		return (char)('A'+Math.random()*(limit-'A'+1));
+	}
+	
 	public static void main(String[] args) throws IOException, InterruptedException {
 		System.out.println("Hello World!");
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -21,10 +29,10 @@ public class Main {
 		
 		//Testing Outputs
 		//System.out.println(patr);
-		//System.out.println(resc1);
+		System.out.println(resc1);
 		//System.out.println(resc2);
 		//System.out.println(resc3);
-		System.out.println(ln1);
+		//System.out.println(ln1);
 		//System.out.println(ln2);
 	}
 }
