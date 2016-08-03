@@ -1,4 +1,3 @@
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Loan {
@@ -15,9 +14,10 @@ public class Loan {
 	public Loan(Patron patr, Resource resc) {
 		this.patr = patr;
 		this.resc = resc;
-		dateBorrowed = new Date();
+		//dateBorrowed = new Date();
+		dateBorrowed = Main.convertToDate("2016-7-20");
 		dueDate = new Date();
-		dueDate.setDate(dueDate.getDate()+loanDuration);
+		dueDate.setTime(dateBorrowed.getTime()+Main.convertToMS(loanDuration));
 		dateReturned = null;
 	}
 
@@ -41,6 +41,18 @@ public class Loan {
 		return loanDuration;
 	}
 	
+	public int getDueDayLeft() {
+		long dif =  dueDate.getTime() - new Date().getTime();
+		int days = Main.convertToDay(dif) - 1;
+		return (days<0)?0:days;
+	}
+	
+	public int getDueDayAfter() {
+		long dif = new Date().getTime() - dueDate.getTime();
+		int days = Main.convertToDay(dif) - 1;
+		return (days<0)?0:days;
+	}
+
 	public String toString() {
 		return String.format("\n%s%sDate Borrowed : %s\nLoan Duration : %d days\nDue Date : %s\nDate Returned : %s\n", patr.toString(), resc.toString(), Main.sdf.format(dateBorrowed), loanDuration, Main.sdf.format(dueDate), (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
 	}

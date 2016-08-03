@@ -1,5 +1,3 @@
-import java.util.Date;
-
 public class NonBookLoan extends Loan {
 	private static double fineRate = 2.00;
 	

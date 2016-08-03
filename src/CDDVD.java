@@ -1,5 +1,3 @@
-import java.util.Date;
-
 public class CDDVD extends Resource{
 
     public CDDVD() {

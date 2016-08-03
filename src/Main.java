@@ -1,9 +1,11 @@
 import java.util.Scanner;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class Main {
+	public static final long MS_PER_DAY = 24 * 60 * 60 * 1000;
 	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public static int getRandomNum(int limit) {
@@ -12,6 +14,23 @@ public class Main {
 	
 	public static char getRandomChar(char limit) {
 		return (char)('A'+Math.random()*(limit-'A'+1));
+	}
+	
+	public static int convertToDay(long dif) {
+		return (int)(dif/MS_PER_DAY)+1;
+	}
+	
+	public static long convertToMS(int dif) {
+		return (long)(dif*MS_PER_DAY);
+	}
+	
+	public static Date convertToDate(String date) {
+		Date d = new Date();
+		try {
+			d = sdf.parse(date);
+		} catch (ParseException e) {
+		}
+		return d;
 	}
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
@@ -32,7 +51,8 @@ public class Main {
 		//System.out.println(resc1);
 		//System.out.println(resc2);
 		//System.out.println(resc3);
-		//System.out.println(ln1);
-		System.out.println(ln2);
+		System.out.println(ln1);
+		System.out.println(ln1.getDueDayLeft());
+		//System.out.println(ln2);
 	}
 }
