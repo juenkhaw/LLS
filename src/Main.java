@@ -29,10 +29,10 @@ public class Main {
 		
 		//Testing Outputs
 		//System.out.println(patr);
-		System.out.println(resc1);
+		//System.out.println(resc1);
 		//System.out.println(resc2);
 		//System.out.println(resc3);
 		//System.out.println(ln1);
-		//System.out.println(ln2);
+		System.out.println(ln2);
 	}
 }

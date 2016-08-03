@@ -18,7 +18,7 @@ public class Loan {
 		dateBorrowed = new Date();
 		dueDate = new Date();
 		dueDate.setDate(dueDate.getDate()+loanDuration);
-		dateReturned = new Date();
+		dateReturned = null;
 	}
 
 	public Date getDateBorrowed(){
@@ -42,6 +42,6 @@ public class Loan {
 	}
 	
 	public String toString() {
-		return String.format("\n%s%s%s\n%s\n%s\n", patr.toString(), resc.toString(), Main.sdf.format(dateBorrowed), Main.sdf.format(dueDate), Main.sdf.format(dateReturned));
+		return String.format("\n%s%sDate Borrowed : %s\nDue Date : %s\nDate Returned : %s\n", patr.toString(), resc.toString(), Main.sdf.format(dateBorrowed), Main.sdf.format(dueDate), (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
 	}
 }

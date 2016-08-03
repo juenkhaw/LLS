@@ -19,6 +19,6 @@ public class BookLoan extends Loan {
 	}
 	
 	public String toString() {
-		return String.format("%s\n%s\n", super.toString(), fineRate);
+		return String.format("%sFine Rate : MYR%8.2f/day\n", super.toString(), fineRate);
 	}
 }
