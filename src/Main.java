@@ -52,7 +52,8 @@ public class Main {
 		//System.out.println(resc2);
 		//System.out.println(resc3);
 		System.out.println(ln1);
-		System.out.println(ln1.getDueDayLeft());
+		System.out.println(ln2.getDueDayAfter());
+		System.out.println(ln2.getFineAmt());
 		//System.out.println(ln2);
 	}
 }

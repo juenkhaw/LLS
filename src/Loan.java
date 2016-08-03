@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Loan {
+public abstract class Loan {
 	private Patron patr;
 	private Resource resc;
 	private static int loanDuration = 14;
@@ -14,8 +14,8 @@ public class Loan {
 	public Loan(Patron patr, Resource resc) {
 		this.patr = patr;
 		this.resc = resc;
-		//dateBorrowed = new Date();
-		dateBorrowed = Main.convertToDate("2016-7-20");
+		dateBorrowed = new Date();
+		//dateBorrowed = Main.convertToDate("2016-7-16");
 		dueDate = new Date();
 		dueDate.setTime(dateBorrowed.getTime()+Main.convertToMS(loanDuration));
 		dateReturned = null;
@@ -52,6 +52,8 @@ public class Loan {
 		int days = Main.convertToDay(dif) - 1;
 		return (days<0)?0:days;
 	}
+	
+	abstract public double getFineAmt();
 
 	public String toString() {
 		return String.format("\n%s%sDate Borrowed : %s\nLoan Duration : %d days\nDue Date : %s\nDate Returned : %s\n", patr.toString(), resc.toString(), Main.sdf.format(dateBorrowed), loanDuration, Main.sdf.format(dueDate), (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
