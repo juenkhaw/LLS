@@ -11,6 +11,15 @@ public class Book extends Resource{
 		this.author = author;
 	}
 	
+	public Book(String[] bookData) {
+		super(bookData[0], bookData[1], bookData[2]);
+		super.setCallNo(bookData[3]);
+		super.setAccessionNo(bookData[4]);
+		super.setIsBorrowed(Boolean.parseBoolean(bookData[5]));
+		ISBN = bookData[6];
+		author = bookData[7];
+	}
+	
 	public void setAuthor(String author) {
 		this.author = author;
 	}

@@ -56,22 +56,27 @@ public class Main {
 		//Testing File IO
 		try {
 			File patronFile = new File("src/Patron.txt");
-			String[] patrTest = inData(patronFile);
+			File bookFile = new File("src/Book.txt");
+			String[] patrRaw = inData(patronFile);
+			String[] bookRaw = inData(bookFile);
 			ArrayList patron = new ArrayList();
-			for(int i=0;i<patrTest.length;i++)
-				patron.add(new Patron(patrTest[i].split("#")));
+			ArrayList book = new ArrayList();
+			for(int i=0;i<patrRaw.length;i++)
+				patron.add(new Patron(patrRaw[i].split("#")));
+			for(int i=0;i<bookRaw.length;i++)
+				book.add(new Book(bookRaw[i].split("#")));
 		
 		for(int i=0;i<patron.size();i++) {
-			System.out.println(patron.get(i));
+			System.out.println(book.get(i));
 		}
 		
 		//Testing Objects
-		Patron patr = new Patron("Stella", "Jln ABC", "11700", "012-3456789", 0);
-		Resource resc1 = new Book("Finding Dory", "Disney", "2016-6-10", "12-214-124", "Disney");
+		//Patron patr = new Patron("Stella", "Jln ABC", "11700", "012-3456789", 0);
+		Resource resc1 = new Book("Finding Dory", "Disney", "2016-6-10", "978-3-8473-1838-5", "Disney");
 		Resource resc2 = new Magazine("Tech Insider", "Tech", "2016-5-12", "12-125-563", "15-1");
 		Resource resc3 = new CDDVD("DVD", "DVD company", "2015-2-28");
-		Loan ln1 = new BookLoan(patr, resc1);
-		Loan ln2 = new NonBookLoan(patr, resc2);
+		Loan ln1 = new BookLoan((Patron)patron.get(0), resc1);
+		Loan ln2 = new NonBookLoan((Patron)patron.get(0), resc2);
 		
 		//Testing Outputs
 		//System.out.println(patr);

@@ -36,8 +36,8 @@ public class Resource {
 		this.accessionNo = accessionNo;
 	}
 	
-	public void setIsBorrowed () {
-		isBorrowed = !isBorrowed;
+	public void setIsBorrowed (boolean isBorrowed) {
+		this.isBorrowed = isBorrowed;
 	}
 
 	public String getTitle(){
