@@ -1,5 +1,6 @@
 import java.util.Scanner;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -28,15 +29,41 @@ public class Main {
 		Date d = new Date();
 		try {
 			d = sdf.parse(date);
-		} catch (ParseException e) {
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return d;
+	}
+	
+	public static String[] inData(File source) {
+		try {
+			FileReader fr = new FileReader(source);
+			char raw[] = new char[(int)source.length()];
+			fr.read(raw);
+			String data = String.valueOf(raw);
+			return data.split("\n");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
 		System.out.println("Hello World!");
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 		System.out.println("Hello World!");
+		
+		//Testing File IO
+		try {
+			File patronFile = new File("src/Patron.txt");
+			String[] patrTest = inData(patronFile);
+			ArrayList patron = new ArrayList();
+			for(int i=0;i<patrTest.length;i++)
+				patron.add(new Patron(patrTest[i].split("#")));
+		
+		for(int i=0;i<patron.size();i++) {
+			System.out.println(patron.get(i));
+		}
 		
 		//Testing Objects
 		Patron patr = new Patron("Stella", "Jln ABC", "11700", "012-3456789", 0);
@@ -51,9 +78,13 @@ public class Main {
 		//System.out.println(resc1);
 		//System.out.println(resc2);
 		//System.out.println(resc3);
-		System.out.println(ln1);
-		System.out.println(ln2.getDueDayAfter());
-		System.out.println(ln2.getFineAmt());
+		//System.out.println(ln1);
+		//System.out.println(ln1.getDueDayAfter());
+		//System.out.println(ln1.getFineAmt());
 		//System.out.println(ln2);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

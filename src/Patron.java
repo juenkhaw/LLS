@@ -21,6 +21,16 @@ public class Patron {
 		this.fine = fine;
 	}
 	
+	public Patron(String[] patronData) {
+		userCount+=1;
+		userCode = "P" + String.valueOf(userCount);
+		userName = patronData[0];
+		address = patronData[1];
+		postCode = patronData[2];
+		hpNo = patronData[3];
+		fine = Double.parseDouble(patronData[4]);
+	}
+	
 	public String getUserCode() {
 		return userCode;
 	}
@@ -63,6 +73,14 @@ public class Patron {
 	
 	public void setHpNo(String hpNo) {
 		this.hpNo = hpNo;
+	}
+	
+	public void receiveFine(double fine) {
+		this.fine += fine;
+	}
+	
+	public void payFine(double fine) {
+		this.fine -= fine;
 	}
 	
 	public String toString() {
