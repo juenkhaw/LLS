@@ -15,7 +15,7 @@ public abstract class Loan {
 		this.patr = patr;
 		this.resc = resc;
 		dateBorrowed = new Date();
-		//dateBorrowed = Main.convertToDate("2016-7-16");
+		//dateBorrowed = Main.convertToDate("2016-7-34");
 		dueDate = new Date();
 		dueDate.setTime(dateBorrowed.getTime()+Main.convertToMS(loanDuration));
 		dateReturned = null;
