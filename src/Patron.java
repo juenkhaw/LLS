@@ -21,14 +21,14 @@ public class Patron {
 		this.fine = fine;
 	}
 	
-	public Patron(String[] patronData) {
+	public Patron(String[] data) {
 		userCount+=1;
 		userCode = "P" + String.valueOf(userCount);
-		userName = patronData[0];
-		address = patronData[1];
-		postCode = patronData[2];
-		hpNo = patronData[3];
-		fine = Double.parseDouble(patronData[4]);
+		userName = data[0];
+		address = data[1];
+		postCode = data[2];
+		hpNo = data[3];
+		fine = Double.parseDouble(data[4]);
 	}
 	
 	public String getUserCode() {

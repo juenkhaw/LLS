@@ -12,6 +12,15 @@ public class Magazine extends Resource {
 		this.ISSN = ISSN;
 		this.volNo = volNo;
     }
+    
+    public Magazine(String[] data) {
+    	super(data[0], data[1], data[2]);
+		super.setCallNo(data[3]);
+		super.setAccessionNo(data[4]);
+		super.setIsBorrowed(Boolean.parseBoolean(data[5]));
+		ISSN = data[6];
+		volNo = data[7];
+	}
 
     public String getISSN(){return ISSN;}
     public String getVolNo(){return volNo;}

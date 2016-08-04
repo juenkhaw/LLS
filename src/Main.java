@@ -57,37 +57,45 @@ public class Main {
 		try {
 			File patronFile = new File("src/Patron.txt");
 			File bookFile = new File("src/Book.txt");
+			File magazineFile = new File("src/Magazine.txt");
+			
 			String[] patrRaw = inData(patronFile);
 			String[] bookRaw = inData(bookFile);
-			ArrayList patron = new ArrayList();
-			ArrayList book = new ArrayList();
+			String[] magazineRaw = inData(magazineFile);
+			
+			ArrayList<Patron> patron = new ArrayList<Patron>();
+			ArrayList<Book> book = new ArrayList<Book>();
+			ArrayList<Magazine> magazine = new ArrayList<Magazine>();
+			
 			for(int i=0;i<patrRaw.length;i++)
 				patron.add(new Patron(patrRaw[i].split("#")));
 			for(int i=0;i<bookRaw.length;i++)
 				book.add(new Book(bookRaw[i].split("#")));
-		
-		for(int i=0;i<patron.size();i++) {
-			System.out.println(book.get(i));
-		}
-		
-		//Testing Objects
-		//Patron patr = new Patron("Stella", "Jln ABC", "11700", "012-3456789", 0);
-		Resource resc1 = new Book("Finding Dory", "Disney", "2016-6-10", "978-3-8473-1838-5", "Disney");
-		Resource resc2 = new Magazine("Tech Insider", "Tech", "2016-5-12", "12-125-563", "15-1");
-		Resource resc3 = new CDDVD("DVD", "DVD company", "2015-2-28");
-		Loan ln1 = new BookLoan((Patron)patron.get(0), resc1);
-		Loan ln2 = new NonBookLoan((Patron)patron.get(0), resc2);
-		
-		//Testing Outputs
-		//System.out.println(patr);
-		//System.out.println(resc1);
-		//System.out.println(resc2);
-		//System.out.println(resc3);
-		//System.out.println(ln1);
-		//System.out.println(ln1.getDueDayAfter());
-		//System.out.println(ln1.getFineAmt());
-		//System.out.println(ln2);
-		
+			for(int i=0;i<magazineRaw.length;i++)
+				magazine.add(new Magazine(magazineRaw[i].split("#")));
+			
+			for(int i=0;i<patron.size();i++) {
+				System.out.println(magazine.get(i));
+			}
+			
+			//Testing Objects
+			//Patron patr = new Patron("Stella", "Jln ABC", "11700", "012-3456789", 0);
+			//Resource resc1 = new Book("Finding Dory", "Disney", "2016-6-10", "978-3-8473-1838-5", "Disney");
+			//Resource resc2 = new Magazine("Tech Insider", "Tech", "2016-5-12", "385-2-5835-3258-3", "16-8");
+			Resource resc3 = new CDDVD("DVD", "DVD company", "2015-2-28");
+			Loan ln1 = new BookLoan(patron.get(0), book.get(0));
+			Loan ln2 = new NonBookLoan(patron.get(0), magazine.get(0));
+			
+			//Testing Outputs
+			//System.out.println(patr);
+			//System.out.println(resc1);
+			//System.out.println(resc2);
+			//System.out.println(resc3);
+			//System.out.println(ln1);
+			//System.out.println(ln1.getDueDayAfter());
+			//System.out.println(ln1.getFineAmt());
+			//System.out.println(ln2);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
