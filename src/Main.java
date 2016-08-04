@@ -58,14 +58,20 @@ public class Main {
 			File patronFile = new File("src/Patron.txt");
 			File bookFile = new File("src/Book.txt");
 			File magazineFile = new File("src/Magazine.txt");
+			File CDDVDFile = new File("src/CDDVD.txt");
+			File bookLoanFile = new File("src/BookLoan.txt");
 			
 			String[] patrRaw = inData(patronFile);
 			String[] bookRaw = inData(bookFile);
 			String[] magazineRaw = inData(magazineFile);
+			String[] CDDVDRaw = inData(CDDVDFile);
+			String[] bookLoanRaw = inData(bookLoanFile);
 			
 			ArrayList<Patron> patron = new ArrayList<Patron>();
 			ArrayList<Book> book = new ArrayList<Book>();
 			ArrayList<Magazine> magazine = new ArrayList<Magazine>();
+			ArrayList<CDDVD> CDDVD = new ArrayList<CDDVD>();
+			ArrayList<BookLoan> bookLoan = new ArrayList<BookLoan>();
 			
 			for(int i=0;i<patrRaw.length;i++)
 				patron.add(new Patron(patrRaw[i].split("#")));
@@ -73,16 +79,21 @@ public class Main {
 				book.add(new Book(bookRaw[i].split("#")));
 			for(int i=0;i<magazineRaw.length;i++)
 				magazine.add(new Magazine(magazineRaw[i].split("#")));
+			for(int i=0;i<CDDVDRaw.length;i++)
+				CDDVD.add(new CDDVD(CDDVDRaw[i].split("#")));
+			for(int i=0;i<bookLoanRaw.length;i++);
+				
 			
+			//Testing File In
 			for(int i=0;i<patron.size();i++) {
-				System.out.println(magazine.get(i));
+				//System.out.println(CDDVD.get(i));
 			}
 			
 			//Testing Objects
 			//Patron patr = new Patron("Stella", "Jln ABC", "11700", "012-3456789", 0);
 			//Resource resc1 = new Book("Finding Dory", "Disney", "2016-6-10", "978-3-8473-1838-5", "Disney");
 			//Resource resc2 = new Magazine("Tech Insider", "Tech", "2016-5-12", "385-2-5835-3258-3", "16-8");
-			Resource resc3 = new CDDVD("DVD", "DVD company", "2015-2-28");
+			//Resource resc3 = new CDDVD("DVD", "DVD company", "2015-2-28");
 			Loan ln1 = new BookLoan(patron.get(0), book.get(0));
 			Loan ln2 = new NonBookLoan(patron.get(0), magazine.get(0));
 			
@@ -91,7 +102,7 @@ public class Main {
 			//System.out.println(resc1);
 			//System.out.println(resc2);
 			//System.out.println(resc3);
-			//System.out.println(ln1);
+			System.out.println(ln1);
 			//System.out.println(ln1.getDueDayAfter());
 			//System.out.println(ln1.getFineAmt());
 			//System.out.println(ln2);
