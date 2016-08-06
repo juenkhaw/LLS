@@ -6,7 +6,7 @@ public class CDDVD extends Resource{
     public CDDVD(String title, String publisher, String publicationDate)
     {
     	super(title, publisher, publicationDate);
-    	Main.CDDVD.add(this);
+    	Main.resource.add(this);
     }
     
     public CDDVD(String[] data) {
@@ -17,9 +17,9 @@ public class CDDVD extends Resource{
     }
     
     public static CDDVD search(String callNo) {
-    	for(int i=0;i<Main.CDDVD.size();i++) {
-			if(Main.CDDVD.get(i).getCallNo().equals(callNo))
-				return Main.CDDVD.get(i);
+    	for(int i=0;i<Main.resource.size();i++) {
+			if(Main.resource.get(i) instanceof CDDVD && Main.resource.get(i).getCallNo().equals(callNo))
+				return (CDDVD)Main.resource.get(i);
 		}
 		return null;
     }

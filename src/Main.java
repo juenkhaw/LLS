@@ -16,11 +16,11 @@ public class Main {
 	static File nonBookLoanFile = new File("src/NonBookLoan.txt");
 	
 	static ArrayList<Patron> patron = new ArrayList<Patron>();
-	static ArrayList<Book> book = new ArrayList<Book>();
-	static ArrayList<Magazine> magazine = new ArrayList<Magazine>();
-	static ArrayList<CDDVD> CDDVD = new ArrayList<CDDVD>();
-	static ArrayList<BookLoan> bookLoan = new ArrayList<BookLoan>();
-	static ArrayList<NonBookLoan> nonBookLoan = new ArrayList<NonBookLoan>();
+	static ArrayList<Resource> resource = new ArrayList<Resource>();
+	//static ArrayList<Magazine> magazine = new ArrayList<Magazine>();
+	//static ArrayList<CDDVD> CDDVD = new ArrayList<CDDVD>();
+	static ArrayList<Loan> loan = new ArrayList<Loan>();
+	//static ArrayList<NonBookLoan> nonBookLoan = new ArrayList<NonBookLoan>();
 	
 	public static void clscr() throws IOException, InterruptedException {
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -87,23 +87,22 @@ public class Main {
 				patron.add(new Patron(rawDataIn[i].split("#")));
 			rawDataIn = inData(bookFile);
 			for(int i=0;i<rawDataIn.length;i++)
-				book.add(new Book(rawDataIn[i].split("#")));
+				resource.add(new Book(rawDataIn[i].split("#")));
 			rawDataIn = inData(magazineFile);
 			for(int i=0;i<rawDataIn.length;i++)
-				magazine.add(new Magazine(rawDataIn[i].split("#")));
+				resource.add(new Magazine(rawDataIn[i].split("#")));
 			rawDataIn = inData(CDDVDFile);
 			for(int i=0;i<rawDataIn.length;i++)
-				CDDVD.add(new CDDVD(rawDataIn[i].split("#")));
+				resource.add(new CDDVD(rawDataIn[i].split("#")));
 			rawDataIn = inData(bookLoanFile);
 			for(int i=0;i<rawDataIn.length;i++)
-				bookLoan.add(new BookLoan(rawDataIn[i].split("#")));
+				loan.add(new BookLoan(rawDataIn[i].split("#")));
 			rawDataIn = inData(nonBookLoanFile);
 			for(int i=0;i<rawDataIn.length;i++)
-				nonBookLoan.add(new NonBookLoan(rawDataIn[i].split("#")));
+				loan.add(new NonBookLoan(rawDataIn[i].split("#")));
 			rawDataIn = null;
 			
-			Loan.search(patron.get(1));
-			System.out.println("TEST = "+Loan.getNumOfLoan(patron.get(1)));
+			System.out.println(patron.get(1).searchLoan(false));
 			
 			//Testing File In
 			/*for(int i=0;i<nonBookLoan.size();i++) {
@@ -133,24 +132,33 @@ public class Main {
 				rawDataOut += patron.get(i).toRawData();
 			outData(patronFile);
 			rawDataOut = "";
-			for(int i=0;i<book.size();i++)
-				rawDataOut += book.get(i).toRawData();
+			for(int i=0;i<resource.size();i++) {
+				if(resource.get(i) instanceof Book)
+					rawDataOut += resource.get(i).toRawData();
+			}
 			outData(bookFile);
 			rawDataOut = "";
-			for(int i=0;i<magazine.size();i++)
-				rawDataOut += magazine.get(i).toRawData();
+			for(int i=0;i<resource.size();i++)
+				if(resource.get(i) instanceof Magazine)
+					rawDataOut += resource.get(i).toRawData();
 			outData(magazineFile);
 			rawDataOut = "";
-			for(int i=0;i<CDDVD.size();i++)
-				rawDataOut += CDDVD.get(i).toRawData();
+			for(int i=0;i<resource.size();i++) {
+				if(resource.get(i) instanceof CDDVD)
+					rawDataOut += resource.get(i).toRawData();
+			}
 			outData(CDDVDFile);
 			rawDataOut = "";
-			for(int i=0;i<bookLoan.size();i++)
-				rawDataOut += bookLoan.get(i).toRawData();
+			for(int i=0;i<loan.size();i++) {
+				if(loan.get(i) instanceof BookLoan)
+					rawDataOut += loan.get(i).toRawData();
+			}
 			outData(bookLoanFile);
 			rawDataOut = "";
-			for(int i=0;i<nonBookLoan.size();i++)
-				rawDataOut += nonBookLoan.get(i).toRawData();
+			for(int i=0;i<loan.size();i++) {
+				if(loan.get(i) instanceof NonBookLoan)
+					rawDataOut += loan.get(i).toRawData();
+			}
 			outData(nonBookLoanFile);
 			rawDataOut = "";
 			

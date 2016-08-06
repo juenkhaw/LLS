@@ -69,32 +69,16 @@ public class Resource {
 	}
 	
 	private boolean validateCallNo() {
-		for(int i=0;i<Main.book.size();i++) {
-			if(Main.book.get(i).getCallNo().equals(callNo))
-				return false;
-		}
-		for(int i=0;i<Main.magazine.size();i++) {
-			if(Main.magazine.get(i).getCallNo().equals(callNo))
-				return false;
-		}
-		for(int i=0;i<Main.CDDVD.size();i++) {
-			if(Main.CDDVD.get(i).getCallNo().equals(callNo))
+		for(int i=0;i<Main.resource.size();i++) {
+			if(Main.resource.get(i).getCallNo().equals(callNo))
 				return false;
 		}
 		return true;
 	}
 	
 	private boolean validateAccessionNo() {
-		for(int i=0;i<Main.book.size();i++) {
-			if(Main.book.get(i).getAccessionNo().equals(accessionNo))
-				return false;
-		}
-		for(int i=0;i<Main.magazine.size();i++) {
-			if(Main.magazine.get(i).getAccessionNo().equals(accessionNo))
-				return false;
-		}
-		for(int i=0;i<Main.CDDVD.size();i++) {
-			if(Main.CDDVD.get(i).getAccessionNo().equals(accessionNo))
+		for(int i=0;i<Main.resource.size();i++) {
+			if(Main.resource.get(i).getAccessionNo().equals(accessionNo))
 				return false;
 		}
 		return true;

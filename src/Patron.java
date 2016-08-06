@@ -93,6 +93,31 @@ public class Patron {
 		return null;
 	}
 	
+	public int searchLoan(boolean all) {
+		int count = 0;
+		for(int i=0;i<Main.loan.size();i++) {
+			if(this.userCode.equals(Main.loan.get(i).getPatr().getUserCode()) && (Main.loan.get(i).getDateReturned()==null || all)) {
+				System.out.println(Main.loan.get(i));
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public Loan searchLoan(String callNo) {
+		for(int i=0;i<Main.loan.size();i++) {
+			if(Main.patron.get(i).getUserCode().equals(this.userCode)) {
+				if(Main.loan.get(i).getResc().getCallNo().equals(callNo))
+					return Main.loan.get(i);
+			}
+		}
+		return null;
+	}
+	
+	/*public Loan borrow(String callNo) {
+		
+	}*/
+	
 	public String toRawData() {
 		return String.format("%s#%s#%s#%s#%.2f#\r\n", userName, address, postCode, hpNo, fine);
 	}

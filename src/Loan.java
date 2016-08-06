@@ -79,26 +79,9 @@ public abstract class Loan {
 	
 	abstract public double getFineAmt();
 	
-	public static ArrayList<Loan> search(Patron patron) {
-		ArrayList<Loan> loans = new ArrayList<Loan>();
-		for(int i=0;i<Main.bookLoan.size();i++) {
-			if(patron.getUserCode().equals(Main.bookLoan.get(i).getPatr().getUserCode())) {
-				loans.add(Main.bookLoan.get(i));
-				System.out.println(Main.bookLoan.get(i));
-			}
-		}
-		for(int i=0;i<Main.nonBookLoan.size();i++) {
-			if(patron.getUserCode().equals(Main.nonBookLoan.get(i).getPatr().getUserCode())) {
-				loans.add(Main.nonBookLoan.get(i));
-				System.out.println(Main.nonBookLoan.get(i));
-			}
-		}
-		return loans;
-	}
-	
-	public static int getNumOfLoan(Patron patron) {
-		ArrayList<Loan> loans = search(patron);
-		return loans.size();
+	public void returnResource() {
+		resc.setIsBorrowed(false);
+		this.dateBorrowed = new Date();
 	}
 	
 	protected String toRawData() {
@@ -106,7 +89,7 @@ public abstract class Loan {
 	}
 
 	public String toString() {
-		return String.format("\nPatron ID : %s\nResource Accession No : %s\nDate Borrowed : %s\nLoan Duration : %d days\nDue Date : %s\nDate Returned : %s\n", patr.getUserCode(), resc.getAccessionNo(), 
+		return String.format("\nPatron ID : %s\nPatron Name : %s\nResource Call No : %s\nResource Name : %s\nResource type : %s\nDate Borrowed : %s\nLoan Duration : %d days\nDue Date : %s\nDate Returned : %s\n", patr.getUserCode(), patr.getUserName(), resc.getCallNo(), resc.getTitle(), resc.getClass(),
 				Main.sdf.format(dateBorrowed), loanDuration, Main.sdf.format(dueDate), (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
 	}
 }

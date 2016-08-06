@@ -6,7 +6,7 @@ public class BookLoan extends Loan {
 	
 	public BookLoan(Patron patr, Resource resc) {
 		super(patr, resc);
-		Main.bookLoan.add(this);
+		Main.loan.add(this);
 	}
 	
 	public BookLoan(String[] data) {

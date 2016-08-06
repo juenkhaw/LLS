@@ -9,7 +9,7 @@ public class Book extends Resource{
 		super(title, publisher, publicationDate);
 		this.ISBN = ISBN;
 		this.author = author;
-		Main.book.add(this);
+		Main.resource.add(this);
 	}
 	
 	public Book(String[] data) {
@@ -34,9 +34,9 @@ public class Book extends Resource{
 	}
 	
 	public static Book search(String callNo) {
-		for(int i=0;i<Main.book.size();i++) {
-			if(Main.book.get(i).getCallNo().equals(callNo))
-				return Main.book.get(i);
+		for(int i=0;i<Main.resource.size();i++) {
+			if(Main.resource.get(i) instanceof Book && Main.resource.get(i).getCallNo().equals(callNo))
+				return (Book)Main.resource.get(i);
 		}
 		return null;
 	}
