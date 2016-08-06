@@ -42,7 +42,7 @@ public class Book extends Resource{
 	}
 	
 	public String toRawData() {
-		return String.format("%s%s#%s\r\n", super.toRawData(), ISBN, author);
+		return String.format("%s%s#%s#\r\n", super.toRawData(), ISBN, author);
 	}
 	
 	public String toString() {

@@ -102,12 +102,15 @@ public class Main {
 				nonBookLoan.add(new NonBookLoan(rawDataIn[i].split("#")));
 			rawDataIn = null;
 			
+			Loan.search(patron.get(1));
+			System.out.println("TEST = "+Loan.getNumOfLoan(patron.get(1)));
+			
 			//Testing File In
 			/*for(int i=0;i<nonBookLoan.size();i++) {
 				System.out.println(nonBookLoan.get(i));
 			}
 			*/
-			//Testing Objects
+			//Testing Objects (DO NOT UNCOMMENT)
 			//Patron patr = new Patron("Paik Wai", "Jln 145", "11200", "012-3495789");
 			//Resource resc1 = new Book("Ghibli Studio Artwork", "Ghibli Studio", "2012-1-30", "901-2-5278-0931-5", "Hayao Miyazaki");
 			//Resource resc2 = new Magazine("Xue Hai", "QingNian Publisher", "2016-7-5", "325-2-9180-1952-3", "16-7");
@@ -115,7 +118,7 @@ public class Main {
 			//Loan ln1 = new BookLoan(patron.get(2), book.get(0));
 			//Loan ln2 = new NonBookLoan(patron.get(1), magazine.get(0));
 			
-			//Testing Outputs
+			//Testing Outputs (DO NOT UNCOMMENT)
 			//System.out.println(patr);
 			//System.out.println(resc1);
 			//System.out.println(resc2);
