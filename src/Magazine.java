@@ -11,7 +11,7 @@ public class Magazine extends Resource {
 		super(title, publisher, publicationDate);
 		this.ISSN = ISSN;
 		this.volNo = volNo;
-		Main.magazine.add(this);
+		Main.resource.add(this);
     }
     
     public Magazine(String[] data) {
@@ -32,15 +32,15 @@ public class Magazine extends Resource {
     }
     
     public static Magazine search(String callNo) {
-    	for(int i=0;i<Main.magazine.size();i++) {
-			if(Main.magazine.get(i).getCallNo().equals(callNo))
-				return Main.magazine.get(i);
+    	for(int i=0;i<Main.resource.size();i++) {
+			if(Main.resource.get(i) instanceof Magazine && Main.resource.get(i).getCallNo().equals(callNo))
+				return (Magazine)Main.resource.get(i);
 		}
 		return null;
     }
     
     public String toRawData() {
-    	return String.format("%s%s#%s\r\n", super.toRawData(), ISSN, volNo);
+    	return String.format("%s%s#%s#\r\n", super.toRawData(), ISSN, volNo);
     }
 
     public String toString()
