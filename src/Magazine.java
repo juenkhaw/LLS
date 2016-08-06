@@ -11,10 +11,37 @@ public class Magazine extends Resource {
 		super(title, publisher, publicationDate);
 		this.ISSN = ISSN;
 		this.volNo = volNo;
+		Main.magazine.add(this);
     }
+    
+    public Magazine(String[] data) {
+    	super(data[0], data[1], data[2]);
+		super.setCallNo(data[3]);
+		super.setAccessionNo(data[4]);
+		super.setIsBorrowed(Boolean.parseBoolean(data[5]));
+		ISSN = data[6];
+		volNo = data[7];
+	}
 
-    public String getISSN(){return ISSN;}
-    public String getVolNo(){return volNo;}
+    public String getISSN(){
+    	return ISSN;
+    }
+    
+    public String getVolNo(){
+    	return volNo;
+    }
+    
+    public static Magazine search(String callNo) {
+    	for(int i=0;i<Main.magazine.size();i++) {
+			if(Main.magazine.get(i).getCallNo().equals(callNo))
+				return Main.magazine.get(i);
+		}
+		return null;
+    }
+    
+    public String toRawData() {
+    	return String.format("%s%s#%s\r\n", super.toRawData(), ISSN, volNo);
+    }
 
     public String toString()
     {

@@ -1,13 +1,30 @@
-import java.util.Scanner;
+import java.util.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.text.ParseException;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.text.*;
 
 public class Main {
-	public static final long MS_PER_DAY = 24 * 60 * 60 * 1000;
-	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	static String[] rawDataIn = null;
+	static String rawDataOut = "";
+	static final long MS_PER_DAY = 24 * 60 * 60 * 1000;
+	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
+	static File patronFile = new File("src/Patron.txt");
+	static File bookFile = new File("src/Book.txt");
+	static File magazineFile = new File("src/Magazine.txt");
+	static File CDDVDFile = new File("src/CDDVD.txt");
+	static File bookLoanFile = new File("src/BookLoan.txt");
+	static File nonBookLoanFile = new File("src/NonBookLoan.txt");
+	
+	static ArrayList<Patron> patron = new ArrayList<Patron>();
+	static ArrayList<Book> book = new ArrayList<Book>();
+	static ArrayList<Magazine> magazine = new ArrayList<Magazine>();
+	static ArrayList<CDDVD> CDDVD = new ArrayList<CDDVD>();
+	static ArrayList<BookLoan> bookLoan = new ArrayList<BookLoan>();
+	static ArrayList<NonBookLoan> nonBookLoan = new ArrayList<NonBookLoan>();
+	
+	public static void clscr() throws IOException, InterruptedException {
+		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+	}
 	
 	public static int getRandomNum(int limit) {
 		return (int)(Math.random()*limit);
@@ -26,6 +43,8 @@ public class Main {
 	}
 	
 	public static Date convertToDate(String date) {
+		if(date.equals(""))
+			return null;
 		Date d = new Date();
 		try {
 			d = sdf.parse(date);
@@ -41,6 +60,7 @@ public class Main {
 			char raw[] = new char[(int)source.length()];
 			fr.read(raw);
 			String data = String.valueOf(raw);
+			fr.close();
 			return data.split("\n");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,43 +68,93 @@ public class Main {
 		}
 	}
 	
-	public static void main(String[] args) throws IOException, InterruptedException {
-		System.out.println("Hello World!");
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-		System.out.println("Hello World!");
-		
-		//Testing File IO
+	public static void outData(File target) {
 		try {
-			File patronFile = new File("src/Patron.txt");
-			String[] patrTest = inData(patronFile);
-			ArrayList patron = new ArrayList();
-			for(int i=0;i<patrTest.length;i++)
-				patron.add(new Patron(patrTest[i].split("#")));
-		
-		for(int i=0;i<patron.size();i++) {
-			System.out.println(patron.get(i));
-		}
-		
-		//Testing Objects
-		Patron patr = new Patron("Stella", "Jln ABC", "11700", "012-3456789", 0);
-		Resource resc1 = new Book("Finding Dory", "Disney", "2016-6-10", "12-214-124", "Disney");
-		Resource resc2 = new Magazine("Tech Insider", "Tech", "2016-5-12", "12-125-563", "15-1");
-		Resource resc3 = new CDDVD("DVD", "DVD company", "2015-2-28");
-		Loan ln1 = new BookLoan(patr, resc1);
-		Loan ln2 = new NonBookLoan(patr, resc2);
-		
-		//Testing Outputs
-		//System.out.println(patr);
-		//System.out.println(resc1);
-		//System.out.println(resc2);
-		//System.out.println(resc3);
-		//System.out.println(ln1);
-		//System.out.println(ln1.getDueDayAfter());
-		//System.out.println(ln1.getFineAmt());
-		//System.out.println(ln2);
-		
+			FileWriter fw = new FileWriter(target);
+			fw.write(rawDataOut);
+			fw.flush();
+			fw.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void main(String[] args) throws IOException, InterruptedException {
+
+		try {
+			rawDataIn = inData(patronFile);
+			for(int i=0;i<rawDataIn.length;i++)
+				patron.add(new Patron(rawDataIn[i].split("#")));
+			rawDataIn = inData(bookFile);
+			for(int i=0;i<rawDataIn.length;i++)
+				book.add(new Book(rawDataIn[i].split("#")));
+			rawDataIn = inData(magazineFile);
+			for(int i=0;i<rawDataIn.length;i++)
+				magazine.add(new Magazine(rawDataIn[i].split("#")));
+			rawDataIn = inData(CDDVDFile);
+			for(int i=0;i<rawDataIn.length;i++)
+				CDDVD.add(new CDDVD(rawDataIn[i].split("#")));
+			rawDataIn = inData(bookLoanFile);
+			for(int i=0;i<rawDataIn.length;i++)
+				bookLoan.add(new BookLoan(rawDataIn[i].split("#")));
+			rawDataIn = inData(nonBookLoanFile);
+			for(int i=0;i<rawDataIn.length;i++)
+				nonBookLoan.add(new NonBookLoan(rawDataIn[i].split("#")));
+			rawDataIn = null;
+			
+			//Testing File In
+			/*for(int i=0;i<nonBookLoan.size();i++) {
+				System.out.println(nonBookLoan.get(i));
+			}
+			*/
+			//Testing Objects
+			//Patron patr = new Patron("Paik Wai", "Jln 145", "11200", "012-3495789");
+			//Resource resc1 = new Book("Ghibli Studio Artwork", "Ghibli Studio", "2012-1-30", "901-2-5278-0931-5", "Hayao Miyazaki");
+			//Resource resc2 = new Magazine("Xue Hai", "QingNian Publisher", "2016-7-5", "325-2-9180-1952-3", "16-7");
+			//Resource resc3 = new CDDVD("Zootopia", "Disney", "2016-7-10");
+			//Loan ln1 = new BookLoan(patron.get(2), book.get(0));
+			//Loan ln2 = new NonBookLoan(patron.get(1), magazine.get(0));
+			
+			//Testing Outputs
+			//System.out.println(patr);
+			//System.out.println(resc1);
+			//System.out.println(resc2);
+			//System.out.println(resc3);
+			//System.out.println(ln1);
+			//System.out.println(ln1.getDueDayAfter());
+			//System.out.println(ln1.getFineAmt());
+			//System.out.println(ln2);
+			
+			//File Out Testing
+			for(int i=0;i<patron.size();i++)
+				rawDataOut += patron.get(i).toRawData();
+			outData(patronFile);
+			rawDataOut = "";
+			for(int i=0;i<book.size();i++)
+				rawDataOut += book.get(i).toRawData();
+			outData(bookFile);
+			rawDataOut = "";
+			for(int i=0;i<magazine.size();i++)
+				rawDataOut += magazine.get(i).toRawData();
+			outData(magazineFile);
+			rawDataOut = "";
+			for(int i=0;i<CDDVD.size();i++)
+				rawDataOut += CDDVD.get(i).toRawData();
+			outData(CDDVDFile);
+			rawDataOut = "";
+			for(int i=0;i<bookLoan.size();i++)
+				rawDataOut += bookLoan.get(i).toRawData();
+			outData(bookLoanFile);
+			rawDataOut = "";
+			for(int i=0;i<nonBookLoan.size();i++)
+				rawDataOut += nonBookLoan.get(i).toRawData();
+			outData(nonBookLoanFile);
+			rawDataOut = "";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Hello World!");
 	}
 }

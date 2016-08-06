@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Patron {
 	private static int userCount = 100000;
@@ -11,24 +12,25 @@ public class Patron {
 	public Patron() {
 	}
 	
-	public Patron(String userName, String address, String postCode, String hpNo, double fine) {
+	public Patron(String userName, String address, String postCode, String hpNo) {
 		userCount+=1;
 		userCode = "P" + String.valueOf(userCount);
 		this.userName = userName;
 		this.address = address;
 		this.postCode = postCode;
 		this.hpNo = hpNo;
-		this.fine = fine;
+		fine = 0;
+		Main.patron.add(this);
 	}
 	
-	public Patron(String[] patronData) {
+	public Patron(String[] data) {
 		userCount+=1;
 		userCode = "P" + String.valueOf(userCount);
-		userName = patronData[0];
-		address = patronData[1];
-		postCode = patronData[2];
-		hpNo = patronData[3];
-		fine = Double.parseDouble(patronData[4]);
+		userName = data[0];
+		address = data[1];
+		postCode = data[2];
+		hpNo = data[3];
+		fine = Double.parseDouble(data[4]);
 	}
 	
 	public String getUserCode() {
@@ -81,6 +83,18 @@ public class Patron {
 	
 	public void payFine(double fine) {
 		this.fine -= fine;
+	}
+	
+	public static Patron search(String userCode) {
+		for(int i=0;i<Main.patron.size();i++) {
+			if(Main.patron.get(i).userCode.equals(userCode))
+				return Main.patron.get(i);
+		}
+		return null;
+	}
+	
+	public String toRawData() {
+		return String.format("%s#%s#%s#%s#%.2f#\r\n", userName, address, postCode, hpNo, fine);
 	}
 	
 	public String toString() {
