@@ -84,11 +84,19 @@ public class Resource {
 		return true;
 	}
 	
+	public static Resource search(String callNo) {
+		for(int i=0;i<Main.resource.size();i++) {
+			if(Main.resource.get(i).getCallNo().equals(callNo))
+				return Main.resource.get(i);
+		}
+		return null;
+	}
+	
 	protected String toRawData() {
 		return String.format("%s#%s#%s#%s#%s#%s#", title, publisher, Main.sdf.format(publicationDate), callNo, accessionNo, String.valueOf(isBorrowed));
 	}
 	
 	public String toString() {
-		return String.format("\nTitle : %s\nPublisher : %s\nPublication Date : %s\nCall No : %s\nAccession No : %s\nIs Borrowed? : %s\n", title, publisher, Main.sdf.format(new Date()), callNo, accessionNo, isBorrowed);
+		return String.format("\nTitle : %s\nPublisher : %s\nPublication Date : %s\nResource Type : %s\nCall No : %s\nAccession No : %s\nIs Borrowed? : %s\n", title, publisher, Main.sdf.format(new Date()), getClass(), callNo, accessionNo, isBorrowed);
 	}
 }

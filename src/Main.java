@@ -102,7 +102,7 @@ public class Main {
 				loan.add(new NonBookLoan(rawDataIn[i].split("#")));
 			rawDataIn = null;
 			
-			System.out.println(patron.get(1).searchLoan(false));
+			System.out.println(patron.get(1).borrow(Resource.search("JR-937-Z88-2016")));
 			
 			//Testing File In
 			/*for(int i=0;i<nonBookLoan.size();i++) {

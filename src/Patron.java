@@ -93,11 +93,12 @@ public class Patron {
 		return null;
 	}
 	
-	public int searchLoan(boolean all) {
+	public int searchLoan(boolean all, boolean print) {
 		int count = 0;
 		for(int i=0;i<Main.loan.size();i++) {
 			if(this.userCode.equals(Main.loan.get(i).getPatr().getUserCode()) && (Main.loan.get(i).getDateReturned()==null || all)) {
-				System.out.println(Main.loan.get(i));
+				if(print)
+					System.out.println(Main.loan.get(i));
 				count++;
 			}
 		}
@@ -106,17 +107,21 @@ public class Patron {
 	
 	public Loan searchLoan(String callNo) {
 		for(int i=0;i<Main.loan.size();i++) {
-			if(Main.patron.get(i).getUserCode().equals(this.userCode)) {
-				if(Main.loan.get(i).getResc().getCallNo().equals(callNo))
-					return Main.loan.get(i);
-			}
+			if(Main.loan.get(i).getPatr().getUserCode().equals(this.userCode)&&Main.loan.get(i).getResc().getCallNo().equals(callNo))
+				return Main.loan.get(i);
 		}
 		return null;
 	}
 	
-	/*public Loan borrow(String callNo) {
-		
-	}*/
+	public Loan borrow(Resource resc) {
+		if(searchLoan(false, false)<3 && fine<=10 && !resc.getIsBorrowed()) {
+			if(resc instanceof Book)
+				return new BookLoan(this, resc);
+			else
+				return new NonBookLoan(this, resc);
+		}
+		return null;
+	}
 	
 	public String toRawData() {
 		return String.format("%s#%s#%s#%s#%.2f#\r\n", userName, address, postCode, hpNo, fine);
