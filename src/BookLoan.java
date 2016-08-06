@@ -8,6 +8,13 @@ public class BookLoan extends Loan {
 		super(patr, resc);
 	}
 	
+	public BookLoan(String[] data) {
+		super(Patron.search(data[0]), Book.search(data[1]));
+		super.setDateBorrowed(data[2]);
+		super.setDueDate();
+		super.setDateReturned(data[3]);
+	}
+	
 	public static double getFineRate() {
 		return fineRate;
 	}

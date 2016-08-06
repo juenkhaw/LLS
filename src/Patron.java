@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Patron {
 	private static int userCount = 100000;
@@ -81,6 +82,14 @@ public class Patron {
 	
 	public void payFine(double fine) {
 		this.fine -= fine;
+	}
+	
+	public static Patron search(String userCode) {
+		for(int i=0;i<Main.patron.size();i++) {
+			if(Main.patron.get(i).userCode.equals(userCode))
+				return Main.patron.get(i);
+		}
+		return null;
 	}
 	
 	public String toString() {

@@ -10,9 +10,17 @@ public class CDDVD extends Resource{
     
     public CDDVD(String[] data) {
     	super(data[0], data[1], data[2]);
-    	super.setAccessionNo(data[3]);
-    	super.setCallNo(data[4]);
+    	super.setCallNo(data[3]);
+    	super.setAccessionNo(data[4]);
     	super.setIsBorrowed(Boolean.parseBoolean(data[5]));
+    }
+    
+    public static CDDVD search(String callNo) {
+    	for(int i=0;i<Main.CDDVD.size();i++) {
+			if(Main.CDDVD.get(i).getCallNo().equals(callNo))
+				return Main.CDDVD.get(i);
+		}
+		return null;
     }
     
     public String toString() {

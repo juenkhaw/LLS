@@ -22,8 +22,21 @@ public class Magazine extends Resource {
 		volNo = data[7];
 	}
 
-    public String getISSN(){return ISSN;}
-    public String getVolNo(){return volNo;}
+    public String getISSN(){
+    	return ISSN;
+    }
+    
+    public String getVolNo(){
+    	return volNo;
+    }
+    
+    public static Magazine search(String callNo) {
+    	for(int i=0;i<Main.magazine.size();i++) {
+			if(Main.magazine.get(i).getCallNo().equals(callNo))
+				return Main.magazine.get(i);
+		}
+		return null;
+    }
 
     public String toString()
     {

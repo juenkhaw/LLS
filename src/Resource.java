@@ -8,10 +8,10 @@ public class Resource {
 	private String accessionNo;
 	private boolean isBorrowed;
 
-	public Resource() {
+	protected Resource() {
 	}
 
-	public Resource(String title, String publisher, String publicationDate) {
+	protected Resource(String title, String publisher, String publicationDate) {
 		this.title = title;
 		this.publisher = publisher;
 		this.publicationDate = Main.convertToDate(publicationDate);
@@ -28,11 +28,11 @@ public class Resource {
 		this.publisher = publisher;
 	}
 	
-	public void setCallNo(String callNo){
+	protected void setCallNo(String callNo){
 		this.callNo = callNo;
 	}
 	
-	public void setAccessionNo(String accessionNo){
+	protected void setAccessionNo(String accessionNo){
 		this.accessionNo = accessionNo;
 	}
 	

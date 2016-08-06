@@ -8,6 +8,20 @@ public class NonBookLoan extends Loan {
 		super(patr, resc);
 	}
 	
+	public NonBookLoan(String[] data) {
+		super(Patron.search(data[0]), searchNonBook(data[1]));
+		System.out.println(data[1]);
+		super.setDateBorrowed(data[2]);
+		super.setDueDate();
+		super.setDateReturned(data[3]);
+	}
+	
+	private static Resource searchNonBook(String callNo) {
+		if(Magazine.search(callNo)==null)
+			return CDDVD.search(callNo);
+		return Magazine.search(callNo);
+	}
+	
 	public static double getFineRate() {
 		return fineRate;
 	}

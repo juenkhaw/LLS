@@ -32,6 +32,14 @@ public class Book extends Resource{
 		return author;
 	}
 	
+	public static Book search(String callNo) {
+		for(int i=0;i<Main.book.size();i++) {
+			if(Main.book.get(i).getCallNo().equals(callNo))
+				return Main.book.get(i);
+		}
+		return null;
+	}
+	
 	public String toString() {
 		return String.format("\n%sISBN : %s\nAuthor : %s\n", super.toString(), ISBN, author);
 	}
