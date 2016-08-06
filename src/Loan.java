@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.ArrayList;
 
 public abstract class Loan {
 	private Patron patr;
@@ -78,12 +79,34 @@ public abstract class Loan {
 	
 	abstract public double getFineAmt();
 	
+	public static ArrayList<Loan> search(Patron patron) {
+		ArrayList<Loan> loans = new ArrayList<Loan>();
+		for(int i=0;i<Main.bookLoan.size();i++) {
+			if(patron.getUserCode().equals(Main.bookLoan.get(i).getPatr().getUserCode())) {
+				loans.add(Main.bookLoan.get(i));
+				System.out.println(Main.bookLoan.get(i));
+			}
+		}
+		for(int i=0;i<Main.nonBookLoan.size();i++) {
+			if(patron.getUserCode().equals(Main.nonBookLoan.get(i).getPatr().getUserCode())) {
+				loans.add(Main.nonBookLoan.get(i));
+				System.out.println(Main.nonBookLoan.get(i));
+			}
+		}
+		return loans;
+	}
+	
+	public static int getNumOfLoan(Patron patron) {
+		ArrayList<Loan> loans = search(patron);
+		return loans.size();
+	}
+	
 	protected String toRawData() {
 		return String.format("%s#%s#%s#%s#\r\n", patr.getUserCode(), resc.getCallNo(), Main.sdf.format(dateBorrowed), (dateReturned!=null)?Main.sdf.format(dateReturned):"");
 	}
 
 	public String toString() {
-		return String.format("\n%s%s\nDate Borrowed : %s\nLoan Duration : %d days\nDue Date : %s\nDate Returned : %s\n", patr.toString(), resc.toString(), 
+		return String.format("\nPatron ID : %s\nResource Accession No : %s\nDate Borrowed : %s\nLoan Duration : %d days\nDue Date : %s\nDate Returned : %s\n", patr.getUserCode(), resc.getAccessionNo(), 
 				Main.sdf.format(dateBorrowed), loanDuration, Main.sdf.format(dueDate), (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
 	}
 }

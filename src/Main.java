@@ -102,6 +102,9 @@ public class Main {
 				nonBookLoan.add(new NonBookLoan(rawDataIn[i].split("#")));
 			rawDataIn = null;
 			
+			Loan.search(patron.get(1));
+			System.out.println("TEST = "+Loan.getNumOfLoan(patron.get(1)));
+			
 			//Testing File In
 			/*for(int i=0;i<nonBookLoan.size();i++) {
 				System.out.println(nonBookLoan.get(i));
