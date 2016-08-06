@@ -14,6 +14,7 @@ public abstract class Loan {
 	protected Loan(Patron patr, Resource resc) {
 		this.patr = patr;
 		this.resc = resc;
+		//System.out.println(resc);
 		dateBorrowed = new Date();
 		//dateBorrowed = Main.convertToDate("2016-7-34");
 		dueDate = new Date();
