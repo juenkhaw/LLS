@@ -138,9 +138,10 @@ public class Main {
 			}
 			outData(bookFile);
 			rawDataOut = "";
-			for(int i=0;i<resource.size();i++)
+			for(int i=0;i<resource.size();i++) {
 				if(resource.get(i) instanceof Magazine)
 					rawDataOut += resource.get(i).toRawData();
+			}
 			outData(magazineFile);
 			rawDataOut = "";
 			for(int i=0;i<resource.size();i++) {
@@ -150,7 +151,7 @@ public class Main {
 			outData(CDDVDFile);
 			rawDataOut = "";
 			for(int i=0;i<loan.size();i++) {
-				if(loan.get(i) instanceof BookLoan)
+				if(loan.get(i) instanceof BookLoan) 
 					rawDataOut += loan.get(i).toRawData();
 			}
 			outData(bookLoanFile);

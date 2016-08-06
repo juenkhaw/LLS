@@ -40,7 +40,7 @@ public class Magazine extends Resource {
     }
     
     public String toRawData() {
-    	return String.format("%s%s#%s\r\n", super.toRawData(), ISSN, volNo);
+    	return String.format("%s%s#%s#\r\n", super.toRawData(), ISSN, volNo);
     }
 
     public String toString()
