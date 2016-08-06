@@ -15,8 +15,12 @@ public class Resource {
 		this.title = title;
 		this.publisher = publisher;
 		this.publicationDate = Main.convertToDate(publicationDate);
-		accessionNo = String.format("%d:%03d",this.publicationDate.getYear()%100, Main.getRandomNum(1000));
-		callNo = String.format("%c%c-%03d-%c%02d-%04d", Main.getRandomChar('Z'), Main.getRandomChar('Z'), Main.getRandomNum(1000), title.charAt(0), Main.getRandomNum(100), this.publicationDate.getYear()+1900);
+		do {
+			accessionNo = String.format("%d:%03d",this.publicationDate.getYear()%100, Main.getRandomNum(1000));
+		} while (!validateAccessionNo());
+		do {
+			callNo = String.format("%c%c-%03d-%c%02d-%04d", Main.getRandomChar('Z'), Main.getRandomChar('Z'), Main.getRandomNum(1000), title.charAt(0), Main.getRandomNum(100), this.publicationDate.getYear()+1900);
+		} while (!validateCallNo());
 		isBorrowed = false;
 	}
 
@@ -62,6 +66,42 @@ public class Resource {
 	
 	public boolean getIsBorrowed() {
 		return isBorrowed;
+	}
+	
+	private boolean validateCallNo() {
+		for(int i=0;i<Main.book.size();i++) {
+			if(Main.book.get(i).getCallNo().equals(callNo))
+				return false;
+		}
+		for(int i=0;i<Main.magazine.size();i++) {
+			if(Main.magazine.get(i).getCallNo().equals(callNo))
+				return false;
+		}
+		for(int i=0;i<Main.CDDVD.size();i++) {
+			if(Main.CDDVD.get(i).getCallNo().equals(callNo))
+				return false;
+		}
+		return true;
+	}
+	
+	private boolean validateAccessionNo() {
+		for(int i=0;i<Main.book.size();i++) {
+			if(Main.book.get(i).getAccessionNo().equals(accessionNo))
+				return false;
+		}
+		for(int i=0;i<Main.magazine.size();i++) {
+			if(Main.magazine.get(i).getAccessionNo().equals(accessionNo))
+				return false;
+		}
+		for(int i=0;i<Main.CDDVD.size();i++) {
+			if(Main.CDDVD.get(i).getAccessionNo().equals(accessionNo))
+				return false;
+		}
+		return true;
+	}
+	
+	protected String toRawData() {
+		return String.format("%s#%s#%s#%s#%s#%s#", title, publisher, Main.sdf.format(publicationDate), callNo, accessionNo, String.valueOf(isBorrowed));
 	}
 	
 	public String toString() {

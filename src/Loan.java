@@ -19,6 +19,7 @@ public abstract class Loan {
 		dueDate = new Date();
 		dueDate.setTime(dateBorrowed.getTime()+Main.convertToMS(loanDuration));
 		dateReturned = null;
+		resc.setIsBorrowed(true);
 	}
 	
 	public Patron getPatr() {
@@ -75,9 +76,13 @@ public abstract class Loan {
 	}
 	
 	abstract public double getFineAmt();
+	
+	protected String toRawData() {
+		return String.format("%s#%s#%s#%s#\r\n", patr.getUserCode(), resc.getCallNo(), Main.sdf.format(dateBorrowed), (dateReturned!=null)?Main.sdf.format(dateReturned):"");
+	}
 
 	public String toString() {
 		return String.format("\n%s%s\nDate Borrowed : %s\nLoan Duration : %d days\nDue Date : %s\nDate Returned : %s\n", patr.toString(), resc.toString(), 
-				(dateBorrowed!=null)?Main.sdf.format(dateBorrowed):"NULL", loanDuration, (dueDate!=null)?Main.sdf.format(dueDate):"NULL", (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
+				Main.sdf.format(dateBorrowed), loanDuration, Main.sdf.format(dueDate), (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
 	}
 }

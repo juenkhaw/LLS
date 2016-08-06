@@ -6,6 +6,7 @@ public class CDDVD extends Resource{
     public CDDVD(String title, String publisher, String publicationDate)
     {
     	super(title, publisher, publicationDate);
+    	Main.CDDVD.add(this);
     }
     
     public CDDVD(String[] data) {
@@ -21,6 +22,10 @@ public class CDDVD extends Resource{
 				return Main.CDDVD.get(i);
 		}
 		return null;
+    }
+    
+    public String toRawData() {
+    	return super.toRawData() + "\r\n";
     }
     
     public String toString() {

@@ -6,11 +6,11 @@ public class NonBookLoan extends Loan {
 	
 	public NonBookLoan(Patron patr, Resource resc) {
 		super(patr, resc);
+		Main.nonBookLoan.add(this);
 	}
 	
 	public NonBookLoan(String[] data) {
 		super(Patron.search(data[0]), searchNonBook(data[1]));
-		System.out.println(data[1]);
 		super.setDateBorrowed(data[2]);
 		super.setDueDate();
 		super.setDateReturned(data[3]);
@@ -32,6 +32,10 @@ public class NonBookLoan extends Loan {
 	
 	public double getFineAmt() {
 		return super.getDueDayAfter() * fineRate;
+	}
+	
+	public String toRawData() {
+		return super.toRawData();
 	}
 	
 	public String toString() {

@@ -9,6 +9,7 @@ public class Book extends Resource{
 		super(title, publisher, publicationDate);
 		this.ISBN = ISBN;
 		this.author = author;
+		Main.book.add(this);
 	}
 	
 	public Book(String[] data) {
@@ -38,6 +39,10 @@ public class Book extends Resource{
 				return Main.book.get(i);
 		}
 		return null;
+	}
+	
+	public String toRawData() {
+		return String.format("%s%s#%s\r\n", super.toRawData(), ISBN, author);
 	}
 	
 	public String toString() {

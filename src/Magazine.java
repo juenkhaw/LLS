@@ -11,6 +11,7 @@ public class Magazine extends Resource {
 		super(title, publisher, publicationDate);
 		this.ISSN = ISSN;
 		this.volNo = volNo;
+		Main.magazine.add(this);
     }
     
     public Magazine(String[] data) {
@@ -36,6 +37,10 @@ public class Magazine extends Resource {
 				return Main.magazine.get(i);
 		}
 		return null;
+    }
+    
+    public String toRawData() {
+    	return String.format("%s%s#%s\r\n", super.toRawData(), ISSN, volNo);
     }
 
     public String toString()

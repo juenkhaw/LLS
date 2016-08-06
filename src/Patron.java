@@ -12,14 +12,15 @@ public class Patron {
 	public Patron() {
 	}
 	
-	public Patron(String userName, String address, String postCode, String hpNo, double fine) {
+	public Patron(String userName, String address, String postCode, String hpNo) {
 		userCount+=1;
 		userCode = "P" + String.valueOf(userCount);
 		this.userName = userName;
 		this.address = address;
 		this.postCode = postCode;
 		this.hpNo = hpNo;
-		this.fine = fine;
+		fine = 0;
+		Main.patron.add(this);
 	}
 	
 	public Patron(String[] data) {
@@ -90,6 +91,10 @@ public class Patron {
 				return Main.patron.get(i);
 		}
 		return null;
+	}
+	
+	public String toRawData() {
+		return String.format("%s#%s#%s#%s#%.2f#\r\n", userName, address, postCode, hpNo, fine);
 	}
 	
 	public String toString() {

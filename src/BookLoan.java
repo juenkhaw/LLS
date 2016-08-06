@@ -6,6 +6,7 @@ public class BookLoan extends Loan {
 	
 	public BookLoan(Patron patr, Resource resc) {
 		super(patr, resc);
+		Main.bookLoan.add(this);
 	}
 	
 	public BookLoan(String[] data) {
@@ -25,6 +26,10 @@ public class BookLoan extends Loan {
 	
 	public double getFineAmt() {
 		return super.getDueDayAfter() * fineRate;
+	}
+	
+	public String toRawData() {
+		return super.toRawData();
 	}
 	
 	public String toString() {
