@@ -79,10 +79,14 @@ public abstract class Loan {
 	
 	abstract public double getFineAmt();
 	
-	public void returnResource() {
-		resc.setIsBorrowed(false);
-		this.dateBorrowed = new Date();
-		patr.receiveFine(getFineAmt());
+	public boolean returnResource() {
+		if(dateReturned==null) {
+			resc.setIsBorrowed(false);
+			this.dateReturned = new Date();
+			patr.receiveFine(getFineAmt());
+			return true;
+		}
+		return false;
 	}
 	
 	protected String toRawData() {
