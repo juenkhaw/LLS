@@ -1,3 +1,4 @@
+package LLS;
 public class CDDVD extends Resource{
 
     public CDDVD() {

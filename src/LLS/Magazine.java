@@ -1,3 +1,4 @@
+package LLS;
 public class Magazine extends Resource {
 
 	private String ISSN;

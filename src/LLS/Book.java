@@ -1,3 +1,4 @@
+package LLS;
 public class Book extends Resource{
 	private String ISBN;
 	private String author;

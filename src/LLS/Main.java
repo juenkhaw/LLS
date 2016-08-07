@@ -1,3 +1,4 @@
+package LLS;
 import java.util.*;
 import java.io.*;
 import java.text.*;
@@ -17,13 +18,27 @@ public class Main {
 	
 	static ArrayList<Patron> patron = new ArrayList<Patron>();
 	static ArrayList<Resource> resource = new ArrayList<Resource>();
-	//static ArrayList<Magazine> magazine = new ArrayList<Magazine>();
-	//static ArrayList<CDDVD> CDDVD = new ArrayList<CDDVD>();
 	static ArrayList<Loan> loan = new ArrayList<Loan>();
-	//static ArrayList<NonBookLoan> nonBookLoan = new ArrayList<NonBookLoan>();
 	
-	public static void clscr() throws IOException, InterruptedException {
+	private static void clscr() throws IOException, InterruptedException {
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+	}
+	
+	private static void readKey() { 
+		System.out.println("Press any key to continue.");
+		try {
+			System.in.read();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	 }
+	
+	private static void printHeader(String title) throws IOException, InterruptedException {
+		clscr();
+		System.out.println("\n  WELCOME TO OK LIBRARY\n  Library Loan Management System\t\t\t"+ new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+		System.out.println("\n  "+title);
+		for(int i=0;i<80;i++) System.out.print("=");
+		System.out.println("\n");
 	}
 	
 	public static int getRandomNum(int limit) {
@@ -82,6 +97,7 @@ public class Main {
 	public static void main(String[] args) throws IOException, InterruptedException {
 
 		try {
+			//Get data from files
 			rawDataIn = inData(patronFile);
 			for(int i=0;i<rawDataIn.length;i++)
 				patron.add(new Patron(rawDataIn[i].split("#")));
@@ -102,32 +118,7 @@ public class Main {
 				loan.add(new NonBookLoan(rawDataIn[i].split("#")));
 			rawDataIn = null;
 			
-			System.out.println(patron.get(1).borrow(Resource.search("JR-937-Z88-2016")));
-			
-			//Testing File In
-			/*for(int i=0;i<nonBookLoan.size();i++) {
-				System.out.println(nonBookLoan.get(i));
-			}
-			*/
-			//Testing Objects (DO NOT UNCOMMENT)
-			//Patron patr = new Patron("Paik Wai", "Jln 145", "11200", "012-3495789");
-			//Resource resc1 = new Book("Ghibli Studio Artwork", "Ghibli Studio", "2012-1-30", "901-2-5278-0931-5", "Hayao Miyazaki");
-			//Resource resc2 = new Magazine("Xue Hai", "QingNian Publisher", "2016-7-5", "325-2-9180-1952-3", "16-7");
-			//Resource resc3 = new CDDVD("Zootopia", "Disney", "2016-7-10");
-			//Loan ln1 = new BookLoan(patron.get(2), book.get(0));
-			//Loan ln2 = new NonBookLoan(patron.get(1), magazine.get(0));
-			
-			//Testing Outputs (DO NOT UNCOMMENT)
-			//System.out.println(patr);
-			//System.out.println(resc1);
-			//System.out.println(resc2);
-			//System.out.println(resc3);
-			//System.out.println(ln1);
-			//System.out.println(ln1.getDueDayAfter());
-			//System.out.println(ln1.getFineAmt());
-			//System.out.println(ln2);
-			
-			//File Out Testing
+			//Write data to files
 			for(int i=0;i<patron.size();i++)
 				rawDataOut += patron.get(i).toRawData();
 			outData(patronFile);
@@ -168,5 +159,7 @@ public class Main {
 		}
 		
 		System.out.println("Hello World!");
+		readKey();
+		printHeader("Hello World");
 	}
 }

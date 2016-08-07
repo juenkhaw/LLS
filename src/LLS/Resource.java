@@ -1,3 +1,4 @@
+package LLS;
 import java.util.Date;
 
 public class Resource {

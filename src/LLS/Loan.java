@@ -1,5 +1,5 @@
+package LLS;
 import java.util.Date;
-import java.util.ArrayList;
 
 public abstract class Loan {
 	private Patron patr;
@@ -79,9 +79,14 @@ public abstract class Loan {
 	
 	abstract public double getFineAmt();
 	
-	public void returnResource() {
-		resc.setIsBorrowed(false);
-		this.dateBorrowed = new Date();
+	public boolean returnResource() {
+		if(dateReturned==null) {
+			resc.setIsBorrowed(false);
+			this.dateReturned = new Date();
+			patr.receiveFine(getFineAmt());
+			return true;
+		}
+		return false;
 	}
 	
 	protected String toRawData() {
@@ -89,7 +94,7 @@ public abstract class Loan {
 	}
 
 	public String toString() {
-		return String.format("\nPatron ID : %s\nPatron Name : %s\nResource Call No : %s\nResource Name : %s\nResource type : %s\nDate Borrowed : %s\nLoan Duration : %d days\nDue Date : %s\nDate Returned : %s\n", patr.getUserCode(), patr.getUserName(), resc.getCallNo(), resc.getTitle(), resc.getClass(),
-				Main.sdf.format(dateBorrowed), loanDuration, Main.sdf.format(dueDate), (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
+		return String.format("\nPatron ID : %s\nPatron Name : %s\nResource Call No : %s\nResource Name : %s\nResource type : %s\nDate Borrowed : %s\nLoan Duration : %d days\nDue Date : %s\nDays left : %d days\nDate Returned : %s\n", patr.getUserCode(), patr.getUserName(), resc.getCallNo(), resc.getTitle(), resc.getClass(),
+				Main.sdf.format(dateBorrowed), loanDuration, Main.sdf.format(dueDate), getDueDayLeft(), (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
 	}
 }

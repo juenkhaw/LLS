@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package LLS;
 
 public class Patron {
 	private static int userCount = 100000;
@@ -113,7 +113,7 @@ public class Patron {
 		return null;
 	}
 	
-	public Loan borrow(Resource resc) {
+	public Loan borrowResource(Resource resc) {
 		if(searchLoan(false, false)<3 && fine<=10 && !resc.getIsBorrowed()) {
 			if(resc instanceof Book)
 				return new BookLoan(this, resc);

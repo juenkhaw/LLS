@@ -1,19 +1,26 @@
-public class BookLoan extends Loan {
-	private static double fineRate = 1.00;
+package LLS;
+public class NonBookLoan extends Loan {
+	private static double fineRate = 2.00;
 	
-	public BookLoan() {
+	public NonBookLoan() {
 	}
 	
-	public BookLoan(Patron patr, Resource resc) {
+	public NonBookLoan(Patron patr, Resource resc) {
 		super(patr, resc);
 		Main.loan.add(this);
 	}
 	
-	public BookLoan(String[] data) {
-		super(Patron.search(data[0]), Book.search(data[1]));
+	public NonBookLoan(String[] data) {
+		super(Patron.search(data[0]), searchNonBook(data[1]));
 		super.setDateBorrowed(data[2]);
 		super.setDueDate();
 		super.setDateReturned(data[3]);
+	}
+	
+	private static Resource searchNonBook(String callNo) {
+		if(Magazine.search(callNo)==null)
+			return CDDVD.search(callNo);
+		return Magazine.search(callNo);
 	}
 	
 	public static double getFineRate() {
