@@ -25,7 +25,7 @@ public class Main {
 	}
 	
 	private static void readKey() { 
-		System.out.println("Press any key to continue.");
+		System.out.println("  PRESS ANY KEY TO CONTINUE >>>");
 		try {
 			System.in.read();
 		} catch (Exception e) {
@@ -35,7 +35,7 @@ public class Main {
 	
 	private static void printHeader(String title) throws IOException, InterruptedException {
 		clscr();
-		System.out.println("\n  WELCOME TO OK LIBRARY\n  Library Loan Management System\t\t\t"+ new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+		System.out.println("\n  WELCOME TO OK LIBRARY\n  Library Loan Management System\t\t\t"+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		System.out.println("\n  "+title);
 		for(int i=0;i<80;i++) System.out.print("=");
 		System.out.println("\n");
@@ -95,7 +95,9 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
-
+		
+		System.out.println("\n  INITIALIZING...\n  GETTING FILES DATA...\n");
+		
 		try {
 			//Get data from files
 			rawDataIn = inData(patronFile);
@@ -117,6 +119,11 @@ public class Main {
 			for(int i=0;i<rawDataIn.length;i++)
 				loan.add(new NonBookLoan(rawDataIn[i].split("#")));
 			rawDataIn = null;
+			
+			System.out.println("  DONE.");
+			readKey();
+			
+			printHeader("Staff Login");
 			
 			//Write data to files
 			for(int i=0;i<patron.size();i++)
@@ -157,9 +164,5 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("Hello World!");
-		readKey();
-		printHeader("Hello World");
 	}
 }

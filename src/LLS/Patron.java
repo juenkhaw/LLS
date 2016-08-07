@@ -81,8 +81,11 @@ public class Patron {
 		this.fine += fine;
 	}
 	
-	public void payFine(double fine) {
+	public boolean payFine(double fine) {
+		if(this.fine < fine)
+			return false;
 		this.fine -= fine;
+		return true;
 	}
 	
 	public static Patron search(String userCode) {
