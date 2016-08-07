@@ -1,5 +1,5 @@
+package LLS;
 import java.util.Date;
-import java.util.ArrayList;
 
 public abstract class Loan {
 	private Patron patr;
