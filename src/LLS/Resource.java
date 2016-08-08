@@ -70,6 +70,7 @@ public class Resource {
 	}
 	
 	private boolean validateCallNo() {
+		//returns true if the generated callNo has not been used
 		for(int i=0;i<Main.resource.size();i++) {
 			if(Main.resource.get(i).getCallNo().equals(callNo))
 				return false;
@@ -78,6 +79,7 @@ public class Resource {
 	}
 	
 	private boolean validateAccessionNo() {
+		//returns true if the generated accessionNo has not been used
 		for(int i=0;i<Main.resource.size();i++) {
 			if(Main.resource.get(i).getAccessionNo().equals(accessionNo))
 				return false;
@@ -86,6 +88,7 @@ public class Resource {
 	}
 	
 	public static Resource search(String callNo) {
+		//returns the Resource object if the callNo is found existed in a resource
 		for(int i=0;i<Main.resource.size();i++) {
 			if(Main.resource.get(i).getCallNo().equals(callNo))
 				return Main.resource.get(i);
@@ -94,10 +97,11 @@ public class Resource {
 	}
 	
 	protected String toRawData() {
+		//return data in raw format for file-writing purpose
 		return String.format("%s#%s#%s#%s#%s#%s#", title, publisher, Main.sdf.format(publicationDate), callNo, accessionNo, String.valueOf(isBorrowed));
 	}
 	
 	public String toString() {
-		return String.format("\nTitle : %s\nPublisher : %s\nPublication Date : %s\nResource Type : %s\nCall No : %s\nAccession No : %s\nIs Borrowed? : %s\n", title, publisher, Main.sdf.format(new Date()), getClass(), callNo, accessionNo, isBorrowed);
+		return String.format("\nTitle : %s\nPublisher : %s\nPublication Date : %s\nResource Type : %s\nCall No : %s\nAccession No : %s\nIs Borrowed? : %s\n", title, publisher, Main.sdf.format(new Date()), getClass().getCanonicalName(), callNo, accessionNo, isBorrowed);
 	}
 }

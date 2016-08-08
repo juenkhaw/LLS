@@ -16,6 +16,7 @@ public class Magazine extends Resource {
     }
     
     public Magazine(String[] data) {
+    	//constructors of Magazine class for the data from the Magazine file
     	super(data[0], data[1], data[2]);
 		super.setCallNo(data[3]);
 		super.setAccessionNo(data[4]);
@@ -33,6 +34,7 @@ public class Magazine extends Resource {
     }
     
     public static Magazine search(String callNo) {
+    	//returns the Magazine object if the callNo is found existed in a magazine
     	for(int i=0;i<Main.resource.size();i++) {
 			if(Main.resource.get(i) instanceof Magazine && Main.resource.get(i).getCallNo().equals(callNo))
 				return (Magazine)Main.resource.get(i);
@@ -41,11 +43,11 @@ public class Magazine extends Resource {
     }
     
     public String toRawData() {
+    	//return data in raw format for file-writing purpose
     	return String.format("%s%s#%s#\r\n", super.toRawData(), ISSN, volNo);
     }
 
-    public String toString()
-    {
+    public String toString() {
     	return String.format(super.toString() + "ISSN : %s\nVolume No : %s\n", ISSN, volNo);
     }
 }

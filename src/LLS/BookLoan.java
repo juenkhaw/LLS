@@ -26,10 +26,12 @@ public class BookLoan extends Loan {
 	}
 	
 	public double getFineAmt() {
+		//returns the fine amount for this book loan
 		return super.getDueDayAfter() * fineRate;
 	}
 	
 	public String toRawData() {
+		//return data in raw format for file-writing purpose
 		return super.toRawData();
 	}
 	

@@ -11,6 +11,7 @@ public class CDDVD extends Resource{
     }
     
     public CDDVD(String[] data) {
+    	//constructor of CDDVD class for the data from the CDDVD file
     	super(data[0], data[1], data[2]);
     	super.setCallNo(data[3]);
     	super.setAccessionNo(data[4]);
@@ -18,6 +19,7 @@ public class CDDVD extends Resource{
     }
     
     public static CDDVD search(String callNo) {
+    	//returns the CDDVD object if the callNo is found existed in a CDDVD
     	for(int i=0;i<Main.resource.size();i++) {
 			if(Main.resource.get(i) instanceof CDDVD && Main.resource.get(i).getCallNo().equals(callNo))
 				return (CDDVD)Main.resource.get(i);
@@ -26,6 +28,7 @@ public class CDDVD extends Resource{
     }
     
     public String toRawData() {
+    	//return data in raw format for file-writing purpose
     	return super.toRawData() + "\r\n";
     }
     

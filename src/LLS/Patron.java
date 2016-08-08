@@ -13,6 +13,7 @@ public class Patron {
 	}
 	
 	public Patron(String userName, String address, String postCode, String hpNo) {
+		//standard constructor of Patron class
 		userCount+=1;
 		userCode = "P" + String.valueOf(userCount);
 		this.userName = userName;
@@ -24,6 +25,7 @@ public class Patron {
 	}
 	
 	public Patron(String[] data) {
+		//constructor of Patron class for the data from the Patron file
 		userCount+=1;
 		userCode = "P" + String.valueOf(userCount);
 		userName = data[0];
@@ -77,11 +79,16 @@ public class Patron {
 		this.hpNo = hpNo;
 	}
 	
-	public void receiveFine(double fine) {
+	public boolean receiveFine(double fine) {
+		//Receives fine issued and increments this.fine 
+		if(fine < 0)
+			return false;
 		this.fine += fine;
+		return true;
 	}
 	
 	public boolean payFine(double fine) {
+		//Receives fines paid and decrements this.fine
 		if(this.fine < fine)
 			return false;
 		this.fine -= fine;
@@ -89,6 +96,7 @@ public class Patron {
 	}
 	
 	public static Patron search(String userCode) {
+		//returns a Patron object if the the userCode has found to be existed
 		for(int i=0;i<Main.patron.size();i++) {
 			if(Main.patron.get(i).userCode.equals(userCode))
 				return Main.patron.get(i);
@@ -97,6 +105,9 @@ public class Patron {
 	}
 	
 	public int searchLoan(boolean all, boolean print) {
+		//returns number of loans that this patron currently having
+		//if all = true, it returns number of loans that this patron having/had
+		//if print = true, it prints out details of all of the loans
 		int count = 0;
 		for(int i=0;i<Main.loan.size();i++) {
 			if(this.userCode.equals(Main.loan.get(i).getPatr().getUserCode()) && (Main.loan.get(i).getDateReturned()==null || all)) {
@@ -109,6 +120,7 @@ public class Patron {
 	}
 	
 	public Loan searchLoan(String callNo) {
+		//returns a Loan object if there is a match by comparing the callNos
 		for(int i=0;i<Main.loan.size();i++) {
 			if(Main.loan.get(i).getPatr().getUserCode().equals(this.userCode)&&Main.loan.get(i).getResc().getCallNo().equals(callNo))
 				return Main.loan.get(i);
@@ -117,6 +129,7 @@ public class Patron {
 	}
 	
 	public Loan borrowResource(Resource resc) {
+		//returns a new Loan object if the resource is successfully borrowed
 		if(searchLoan(false, false)<3 && fine<=10 && !resc.getIsBorrowed()) {
 			if(resc instanceof Book)
 				return new BookLoan(this, resc);
@@ -127,6 +140,7 @@ public class Patron {
 	}
 	
 	public String toRawData() {
+		//return data in raw format for file-writing purpose
 		return String.format("%s#%s#%s#%s#%.2f#\r\n", userName, address, postCode, hpNo, fine);
 	}
 	

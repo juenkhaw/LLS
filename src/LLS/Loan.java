@@ -66,12 +66,14 @@ public abstract class Loan {
 	}
 	
 	public int getDueDayLeft() {
+		//returns number of days left for this loan to expire
 		long dif =  dueDate.getTime() - new Date().getTime();
 		int days = Main.convertToDay(dif) - 1;
 		return (days<0)?0:days;
 	}
 	
 	public int getDueDayAfter() {
+		//returns number of days passed after the due date for this loan
 		long dif = new Date().getTime() - dueDate.getTime();
 		int days = Main.convertToDay(dif) - 1;
 		return (days<0)?0:days;
@@ -80,6 +82,7 @@ public abstract class Loan {
 	abstract public double getFineAmt();
 	
 	public boolean returnResource() {
+		//returns true if the resource is successfully returned
 		if(dateReturned==null) {
 			resc.setIsBorrowed(false);
 			this.dateReturned = new Date();
@@ -90,6 +93,7 @@ public abstract class Loan {
 	}
 	
 	protected String toRawData() {
+		//return data in raw format for file-writing purpose
 		return String.format("%s#%s#%s#%s#\r\n", patr.getUserCode(), resc.getCallNo(), Main.sdf.format(dateBorrowed), (dateReturned!=null)?Main.sdf.format(dateReturned):"");
 	}
 

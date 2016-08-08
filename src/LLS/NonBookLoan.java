@@ -11,6 +11,7 @@ public class NonBookLoan extends Loan {
 	}
 	
 	public NonBookLoan(String[] data) {
+		//constructor of NonBookLoan class for the data from the NonBookLoan file
 		super(Patron.search(data[0]), searchNonBook(data[1]));
 		super.setDateBorrowed(data[2]);
 		super.setDueDate();
@@ -18,6 +19,7 @@ public class NonBookLoan extends Loan {
 	}
 	
 	private static Resource searchNonBook(String callNo) {
+		//returns the Magazine/CDDVD object if the callNo is found existed in a magazine/CDDVD
 		if(Magazine.search(callNo)==null)
 			return CDDVD.search(callNo);
 		return Magazine.search(callNo);
@@ -32,10 +34,12 @@ public class NonBookLoan extends Loan {
 	}
 	
 	public double getFineAmt() {
+		//returns the fine amount for this non book loan
 		return super.getDueDayAfter() * fineRate;
 	}
 	
 	public String toRawData() {
+		//return data in raw format for file-writing purpose
 		return super.toRawData();
 	}
 	
