@@ -14,6 +14,7 @@ public class Book extends Resource{
 	}
 	
 	public Book(String[] data) {
+		//constructor of Book class for the data from the Book file
 		super(data[0], data[1], data[2]);
 		super.setCallNo(data[3]);
 		super.setAccessionNo(data[4]);
@@ -35,6 +36,7 @@ public class Book extends Resource{
 	}
 	
 	public static Book search(String callNo) {
+		//returns the Book object if the callNo is found existed in a book
 		for(int i=0;i<Main.resource.size();i++) {
 			if(Main.resource.get(i) instanceof Book && Main.resource.get(i).getCallNo().equals(callNo))
 				return (Book)Main.resource.get(i);
@@ -43,6 +45,7 @@ public class Book extends Resource{
 	}
 	
 	public String toRawData() {
+		//return data in raw format for file-writing purpose
 		return String.format("%s%s#%s#\r\n", super.toRawData(), ISBN, author);
 	}
 	
