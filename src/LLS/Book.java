@@ -50,6 +50,6 @@ public class Book extends Resource{
 	}
 	
 	public String toString() {
-		return String.format("\n%sISBN : %s\nAuthor : %s\n", super.toString(), ISBN, author);
+		return String.format("\n%s  ISBN\t\t : %s\n  Author\t : %s\n", super.toString(), ISBN, author);
 	}
 }

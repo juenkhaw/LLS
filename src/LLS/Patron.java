@@ -79,6 +79,29 @@ public class Patron {
 		this.hpNo = hpNo;
 	}
 	
+	public static boolean checkHpNo(String number)
+    {
+    	char c;
+		boolean valid = true;
+
+		if(number.length() == 11 || number.length() == 12){
+			c = number.charAt(3);
+			if(c == '-'){
+				for(int i = 0; i < 3; i++)
+				{
+					if(Character.isLetter(number.charAt(i)))
+					valid = false;
+				}
+				for(int i = 4; i <number.length(); i++)
+				{
+					if(Character.isLetter(number.charAt(i)))
+					valid = false;
+				}
+			}else valid = false;
+		}else valid = false;
+		return valid;
+    }
+	
 	public boolean receiveFine(double fine) {
 		//Receives fine issued and increments this.fine 
 		if(fine < 0)
@@ -90,6 +113,8 @@ public class Patron {
 	public boolean payFine(double fine) {
 		//Receives fines paid and decrements this.fine
 		if(this.fine < fine)
+			return false;
+		if(fine < 0)
 			return false;
 		this.fine -= fine;
 		return true;
@@ -121,11 +146,12 @@ public class Patron {
 	
 	public Loan searchLoan(String callNo) {
 		//returns a Loan object if there is a match by comparing the callNos
+		Loan l = null;
 		for(int i=0;i<Main.loan.size();i++) {
 			if(Main.loan.get(i).getPatr().getUserCode().equals(this.userCode)&&Main.loan.get(i).getResc().getCallNo().equals(callNo))
-				return Main.loan.get(i);
+				l = Main.loan.get(i);
 		}
-		return null;
+		return l;
 	}
 	
 	public Loan borrowResource(Resource resc) {
@@ -145,7 +171,7 @@ public class Patron {
 	}
 	
 	public String toString() {
-		return String.format("\nUser Code\t: %s\nUser Name\t: %s\nAddress\t\t: %s\nPost Code\t: %s\nHp. No.\t\t: %s\nTotal Fine\t: MYR%8.2f\n",
+		return String.format("\n  Patron Code\t: %s\n  Patron Name\t: %s\n  Address\t: %s\n  Post Code\t: %s\n  Hp. No.\t: %s\n  Total Fine\t: MYR%8.2f\n",
 				userCode, userName, address, postCode, hpNo, fine);
 	}
 }
