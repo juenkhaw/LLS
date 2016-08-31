@@ -48,6 +48,6 @@ public class Magazine extends Resource {
     }
 
     public String toString() {
-    	return String.format(super.toString() + "ISSN : %s\nVolume No : %s\n", ISSN, volNo);
+    	return String.format(super.toString() + "  ISSN\t\t : %s\n  Volume No\t : %s\n", ISSN, volNo);
     }
 }

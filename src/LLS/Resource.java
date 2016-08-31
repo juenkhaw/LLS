@@ -69,6 +69,15 @@ public class Resource {
 		return isBorrowed;
 	}
 	
+	public String getClassName() {
+		if(this instanceof Book)
+			return "Book";
+		else if(this instanceof Magazine)
+			return "Magazine";
+		else
+			return "CDDVD";
+	}
+	
 	private boolean validateCallNo() {
 		//returns true if the generated callNo has not been used
 		for(int i=0;i<Main.resource.size();i++) {
@@ -96,12 +105,19 @@ public class Resource {
 		return null;
 	}
 	
+	public static Resource searchNonBook(String callNo) {
+		//returns the Magazine/CDDVD object if the callNo is found existed in a magazine/CDDVD
+		if(Magazine.search(callNo)==null)
+			return CDDVD.search(callNo);
+		return Magazine.search(callNo);
+	}
+	
 	protected String toRawData() {
 		//return data in raw format for file-writing purpose
 		return String.format("%s#%s#%s#%s#%s#%s#", title, publisher, Main.sdf.format(publicationDate), callNo, accessionNo, String.valueOf(isBorrowed));
 	}
 	
 	public String toString() {
-		return String.format("\nTitle : %s\nPublisher : %s\nPublication Date : %s\nResource Type : %s\nCall No : %s\nAccession No : %s\nIs Borrowed? : %s\n", title, publisher, Main.sdf.format(new Date()), getClass().getCanonicalName(), callNo, accessionNo, isBorrowed);
+		return String.format("\n  Title\t\t : %s\n  Publisher\t : %s\n  Public. Date\t : %s\n  Resource Type\t : %s\n  Call No\t : %s\n  Accession No\t : %s\n  Is Borrowed?\t : %s\n", title, publisher, Main.sdf.format(new Date()), getClassName(), callNo, accessionNo, isBorrowed);
 	}
 }

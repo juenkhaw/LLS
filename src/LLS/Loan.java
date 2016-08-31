@@ -21,7 +21,6 @@ public abstract class Loan {
 		dueDate = new Date();
 		dueDate.setTime(dateBorrowed.getTime()+Main.convertToMS(loanDuration));
 		dateReturned = null;
-		resc.setIsBorrowed(true);
 	}
 	
 	public Patron getPatr() {
@@ -98,7 +97,7 @@ public abstract class Loan {
 	}
 
 	public String toString() {
-		return String.format("\nPatron ID : %s\nPatron Name : %s\nResource Call No : %s\nResource Name : %s\nResource type : %s\nDate Borrowed : %s\nLoan Duration : %d days\nDue Date : %s\nDays left : %d days\nDate Returned : %s\n", patr.getUserCode(), patr.getUserName(), resc.getCallNo(), resc.getTitle(), resc.getClass(),
-				Main.sdf.format(dateBorrowed), loanDuration, Main.sdf.format(dueDate), getDueDayLeft(), (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
+		return String.format("\n  Patron ID\t : %s\n  Patron Name\t : %s\n  Call No\t : %s\n  Resource Name\t : %s\n  Resource type\t : %s\n  Date Borrowed\t : %s\n  Loan Duration\t : %d days\n  Days left\t : %d days\n  Date Returned\t : %s\n", patr.getUserCode(), patr.getUserName(), resc.getCallNo(), resc.getTitle(), resc.getClassName(),
+				Main.sdf.format(dateBorrowed), loanDuration, Main.sdf.format(dueDate), (dateReturned!=null)?Main.sdf.format(dateReturned):"NULL");
 	}
 }

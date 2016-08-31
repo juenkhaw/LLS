@@ -7,6 +7,7 @@ public class BookLoan extends Loan {
 	
 	public BookLoan(Patron patr, Resource resc) {
 		super(patr, resc);
+		resc.setIsBorrowed(true);
 		Main.loan.add(this);
 	}
 	
@@ -36,6 +37,6 @@ public class BookLoan extends Loan {
 	}
 	
 	public String toString() {
-		return String.format("%sFine Rate : MYR%8.2f/day\n", super.toString(), fineRate);
+		return String.format("%s  Fine Rate\t : MYR %.2f/day\n", super.toString(), fineRate);
 	}
 }

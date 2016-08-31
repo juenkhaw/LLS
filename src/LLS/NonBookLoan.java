@@ -7,22 +7,16 @@ public class NonBookLoan extends Loan {
 	
 	public NonBookLoan(Patron patr, Resource resc) {
 		super(patr, resc);
+		resc.setIsBorrowed(true);
 		Main.loan.add(this);
 	}
 	
 	public NonBookLoan(String[] data) {
 		//constructor of NonBookLoan class for the data from the NonBookLoan file
-		super(Patron.search(data[0]), searchNonBook(data[1]));
+		super(Patron.search(data[0]), Resource.searchNonBook(data[1]));
 		super.setDateBorrowed(data[2]);
 		super.setDueDate();
 		super.setDateReturned(data[3]);
-	}
-	
-	private static Resource searchNonBook(String callNo) {
-		//returns the Magazine/CDDVD object if the callNo is found existed in a magazine/CDDVD
-		if(Magazine.search(callNo)==null)
-			return CDDVD.search(callNo);
-		return Magazine.search(callNo);
 	}
 	
 	public static double getFineRate() {
@@ -44,6 +38,6 @@ public class NonBookLoan extends Loan {
 	}
 	
 	public String toString() {
-		return String.format("%sFine Rate : MYR%8.2f/day\n", super.toString(), fineRate);
+		return String.format("%s  Fine Rate\t : MYR %.2f/day\n", super.toString(), fineRate);
 	}
 }
